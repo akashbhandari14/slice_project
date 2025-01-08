@@ -1,282 +1,170 @@
-"use client"
+"use client";
 
-import Image from 'next/image'
-import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
+import { useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const Product = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-  const slides = [ 
-    { image: "/images/product1.png" }, 
-    { image: "/images/product1.png" }, 
-    { image: "/images/product1.png" }, 
-    { image: "/images/product1.png" }, 
-    { image: "/images/product1.png" }, 
-    { image: "/images/product1.png" }, 
-    { image: "/images/product1.png" }
+  const products = [
+    { id: 1, image: '/images/spice_img.png', isNew: true, title: 'Product 1' },
+    { id: 2, image: '/images/spice_img.png', isNew: true, title: 'Product 2' },
+    { id: 3, image: '/images/spice_img.png', isNew: true, title: 'Product 3' },
+    { id: 4, image: '/images/spice_img.png', isNew: true, title: 'Product 4' },
+    { id: 5, image: '/images/spice_img.png', isNew: true, title: 'Product 5' },
+    { id: 6, image: '/images/spice_img.png', isNew: true, title: 'Product 6' },
+    { id: 7, image: '/images/spice_img.png', isNew: true, title: 'Product 7' },
+    { id: 8, image: '/images/spice_img.png', isNew: true, title: 'Product 8' }
   ];
 
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const nextSlide = () => {
-    setCurrentIndex(prevIndex => 
-      prevIndex === slides.length - 1 ? 0 : prevIndex + 1
+    setCurrentSlide(prev =>
+      prev >= products.length - 2 ? 0 : prev + 1
     );
   };
 
   const prevSlide = () => {
-    setCurrentIndex(prevIndex => 
-      prevIndex === 0 ? slides.length - 1 : prevIndex - 1
+    setCurrentSlide(prev =>
+      prev === 0 ? products.length - 2 : prev - 1
     );
   };
 
-  const goToSlide = (index: any) => {
-    if (index <= slides.length - 4) {
-      setCurrentIndex(index);
-    }
+  // Get visible products for mobile slider
+  const getVisibleProducts = () => {
+    const visibleProducts = [];
+    const firstIndex = currentSlide;
+    const secondIndex = (currentSlide + 1) % products.length;
+
+    visibleProducts.push(products[firstIndex]);
+    visibleProducts.push(products[secondIndex]);
+
+    return visibleProducts;
   };
 
   return (
-    <>
-      <div className="feature_container w-full bg-[#f9f3e5]">
-        <div className="feature_inner_container w-[85%] mx-auto flex flex-col justify-start items-center pt-4 pb-2 gap-2">
+    <div className="feature_container w-full bg-[#f9f3e5] py-8">
+      <div className="feature_inner_container w-[85%] max-sm:w-[95%] mx-auto flex flex-col justify-start items-center gap-6">
+        <div className="text-center">
           <h1 className="text-3xl text-darkRed">Features.</h1>
-          <p className="text-[0.5rem]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, repudiandae.</p>
-          <div className="relative w-full max-w-7xl mx-auto">
+          <p className="text-sm text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
 
-            <div className="relative w-full h-96">
-              {/* Slides Container */}
-              <div className="relative w-full h-full overflow-hidden">
-                <div
-                  className=" w-full grid grid-flow-col auto-cols-[20%] gap-8 transition-transform duration-500 ease-out h-full"
-                  style={{ transform: `translateX(-${currentIndex * (100 / 4)}%)` }}
-                >
-                  {slides.map((slide, index) => (
-                    <div key={index} className="w-full h-full flex flex-col justify-start items-center">
-                      <div className="bg-[#f5f1d8] relative flex flex-col justify-center items-center bg-center py-4">
-                        {/* Replace img with Next.js Image component */}
-                        <Image
-                          src={slide.image} // Replace with actual image path
-                          alt={`feature_product_${index + 1}`}
-                          width={300} // Set appropriate width
-                          height={100} // Set appropriate height
-                          className="w-full object-cover"
-                        />
-                        <button className="absolute top-2 right-6 text-[0.5rem] p-1 bg-red-800 text-white">New</button>
-                        <p className="text-[0.5rem] absolute bottom-2 text-[#d7be8d]">Lorem ipsum, dolor sit amet</p>
-                      </div>
-                      <button className="bg-[#c78f42] text-white text-xs px-6 py-1.5">Order it</button>
-                      <p className="text-[0.5rem] text-center">Lorem ipsum dolor sit amet consectetur.</p>
+        {/* Mobile Slider */}
+        {isMobile && (
+          <div className="w-full relative">
+            <button
+              onClick={prevSlide}
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow-lg"
+            >
+              <ChevronLeft size={24} />
+            </button>
+
+            <button
+              onClick={nextSlide}
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow-lg"
+            >
+              <ChevronRight size={24} />
+            </button>
+
+            <div className="overflow-hidden">
+              <div
+                className="flex transition-transform duration-500 ease-in-out"
+                style={{ transform: `translateX(-${currentSlide * 50}%)` }}
+              >
+                {products.map((product, index) => (
+                  <div
+                    key={product.id}
+                    className="w-1/2 px-2 flex-shrink-0 transition-all duration-500"
+                  >
+                    <div className="bg-[#f0ead4] relative p-4 flex flex-col items-center">
+                      <img
+                        src={product.image}
+                        alt={product.title}
+                        className="w-full h-60 object-cover"
+                      />
+                      {product.isNew && (
+                        <span className="absolute top-2 right-2 text-xs px-2 py-1 max-sm:py-0 max-sm:px-1 bg-red-800 text-white">
+                          New
+                        </span>
+                      )}
+                      <p className="text-xs mt-2 text-[#d7be8d]">Lorem ipsum, dolor sit amet</p>
                     </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Side Arrow Navigation */}
-              <button
-                onClick={prevSlide}
-                className="absolute -left-12 top-1/3 transform -translate-y-1/2 bg-white w-10 h-10 rounded-full shadow-lg hover:bg-gray-100 flex items-center justify-center text-2xl"
-                aria-label="Previous slide"
-              >
-                ←
-              </button>
-              <button
-                onClick={nextSlide}
-                className="absolute -right-12 top-1/3 transform -translate-y-1/2 bg-white w-10 h-10 rounded-full shadow-lg hover:bg-gray-100 flex items-center justify-center text-2xl"
-                aria-label="Next slide"
-              >
-                →
-              </button>
-
-              {/* Navigation Dots */}
-              <div className="absolute bottom-32 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                {slides.slice(0, slides.length - 3).map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => goToSlide(index)}
-                    className={`w-2 h-2 rounded-full transition-colors duration-300 ${currentIndex === index ? 'bg-black' : 'bg-gray-300'
-                      }`}
-                    aria-label={`Go to slide ${index + 1}`}
-                  />
+                    <div className="text-center mt-2">
+                      <button className="bg-[#c78f42] text-white text-xs px-4 py-1 rounded">
+                        Order it
+                      </button>
+                      <p className="text-xs mt-1">Lorem ipsum dolor sit amet.</p>
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
+
+            {/* Dots indicator */}
+            <div className="flex justify-center gap-2 mt-4">
+              {Array.from({ length: Math.ceil(products.length / 2) }).map((_, index) => (
+                <button
+                  key={index}
+                  className={`h-2 rounded-full transition-all ${Math.floor(currentSlide / 2) === index ? 'w-6 bg-darkRed' : 'w-2 bg-gray-300'
+                    }`}
+                  onClick={() => setCurrentSlide(index * 2)}
+                />
+              ))}
+            </div>
           </div>
-        </div>
+        )}
+
+        {/* Desktop/Tablet Grid */}
+        {!isMobile && (
+          <div className="w-full grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-6">
+            {products.map((product) => (
+              <div
+                key={product.id}
+                className="flex flex-col items-center"
+              >
+                <div className="bg-[#f0ead4] relative w-full p-4 flex flex-col justify-center items-center">
+                    {/* <Image src={product.image} alt={product.title} className="w-full h-80 object-cover hover:scale-105 transition-transform duration-300" width={400} height={400} /> */}
+                  <img
+                    src={product.image}
+                    alt={product.title}
+                    className="w-full h-96 object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                  {product.isNew && (
+                    <span className="absolute top-2 right-6 text-xs px-2 py-1 bg-red-800 text-white">
+                      New
+                    </span>
+                  )}
+                  <p className="text-sm mt-2 text-[#d7be8d]">Lorem ipsum, dolor sit amet</p>
+                </div>
+                <div className="text-center">
+                  <button className="bg-[#c78f42] text-white text-sm px-6 py-2 rounded hover:bg-[#b27832] transition-colors">
+                    Order it
+                  </button>
+                  <p className="text-xs mt-2">Lorem ipsum dolor sit amet consectetur.</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <button className="bg-darkestRed text-sm text-white py-3 px-8 rounded-md hover:bg-red-900 transition-colors">
+          View in Cart
+        </button>
       </div>
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default Product
-
-
-
-// import { useState } from 'react';
-
-// const Carousel = () => {
-//   const [currentIndex, setCurrentIndex] = useState(0);
-
-//   const slides = [
-//     {
-//       image: "/api/placeholder/400/300",
-//       title: "WILLIE MOSCONI",
-//       description: "Known as 'Mr. Pocket Billiards', Willie Mosconi was among the first Billiards Hall of Fame inductees."
-//     },
-//     {
-//       image: "/api/placeholder/400/300",
-//       title: "EFREN REYES",
-//       description: "Known as 'The Magician', Efren Reyes is well regarded by many professionals as the greatest all around player of all time."
-//     },
-//     {
-//       image: "/api/placeholder/400/300",
-//       title: "RONNIE O'SULLIVAN",
-//       description: "Ronnie O'Sullivan, professional snooker player who is widely regarded as one of the greatest players in the history of the sport."
-//     },
-//     {
-//       image: "/api/placeholder/400/300",
-//       title: "STEVE DAVIS",
-//       description: "Steve Davis dominated snooker in the 1980s, winning six World Championships."
-//     },
-//     {
-//       image: "/api/placeholder/400/300",
-//       title: "SHANE VAN BOENING",
-//       description: "Shane Van Boening is considered one of the best American pool players of all time."
-//     }
-//   ];
-
-//   const nextSlide = () => {
-//     setCurrentIndex((prevIndex) =>
-//       prevIndex >= slides.length - 3 ? 0 : prevIndex + 1
-//     );
-//   };
-
-//   const prevSlide = () => {
-//     setCurrentIndex((prevIndex) =>
-//       prevIndex === 0 ? slides.length - 3 : prevIndex - 1
-//     );
-//   };
-
-//   const goToSlide = (index) => {
-//     if (index <= slides.length - 3) {
-//       setCurrentIndex(index);
-//     }
-//   };
-
-//   return (
-//     <div className="relative w-full max-w-6xl mx-auto">
-//       {/* Previous/Next Text Buttons */}
-//       <div className="flex justify-between mb-4">
-//         <button
-//           onClick={prevSlide}
-//           className="px-4 py-2 text-gray-600 hover:text-gray-900 font-medium flex items-center gap-2"
-//         >
-//           <span className="text-xl">←</span>
-//           Previous
-//         </button>
-//         <button
-//           onClick={nextSlide}
-//           className="px-4 py-2 text-gray-600 hover:text-gray-900 font-medium flex items-center gap-2"
-//         >
-//           Next
-//           <span className="text-xl">→</span>
-//         </button>
-//       </div>
-
-//       <div className="relative h-96">
-//         {/* Slides Container */}
-//         <div className="relative h-full overflow-hidden">
-//           <div
-//             className="flex transition-transform duration-500 ease-out h-full"
-//             style={{ transform: `translateX(-${currentIndex * (100/3)}%)` }}
-//           >
-//             {slides.map((slide, index) => (
-//               <div
-//                 key={index}
-//                 className="w-1/3 flex-shrink-0 px-2"
-//               >
-//                 <div className="relative h-full bg-white shadow-md">
-//                   <img
-//                     src={slide.image}
-//                     alt={slide.title}
-//                     className="w-full h-3/4 object-cover grayscale"
-//                   />
-//                   <div className="absolute bottom-0 w-full bg-white p-4 text-center">
-//                     <h3 className="text-lg font-bold mb-2">{slide.title}</h3>
-//                     <p className="text-sm text-gray-600 line-clamp-2">{slide.description}</p>
-//                   </div>
-//                 </div>
-//               </div>
-//             ))}
-//           </div>
-//         </div>
-
-//         {/* Side Arrow Navigation */}
-//         <button
-//           onClick={prevSlide}
-//           className="absolute -left-12 top-1/3 transform -translate-y-1/2 bg-white w-10 h-10 rounded-full shadow-lg hover:bg-gray-100 flex items-center justify-center text-2xl"
-//           aria-label="Previous slide"
-//         >
-//           ←
-//         </button>
-//         <button
-//           onClick={nextSlide}
-//           className="absolute -right-12 top-1/3 transform -translate-y-1/2 bg-white w-10 h-10 rounded-full shadow-lg hover:bg-gray-100 flex items-center justify-center text-2xl"
-//           aria-label="Next slide"
-//         >
-//           →
-//         </button>
-
-//         {/* Navigation Dots */}
-//         <div className="absolute bottom-32 left-1/2 transform -translate-x-1/2 flex space-x-2">
-//           {slides.slice(0, slides.length - 2).map((_, index) => (
-//             <button
-//               key={index}
-//               onClick={() => goToSlide(index)}
-//               className={`w-2 h-2 rounded-full transition-colors duration-300 ${
-//                 currentIndex === index ? 'bg-black' : 'bg-gray-300'
-//               }`}
-//               aria-label={`Go to slide ${index + 1}`}
-//             />
-//           ))}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Carousel;
-
-
-
-
-// <div className="feature_container w-full bg-[#f9f3e5]">
-//       <div className="feature_inner_container w-[85%] mx-auto flex flex-col justify-start items-center pt-4 pb-2 gap-2">
-//         <h1 className="text-3xl text-darkRed">Features.</h1>
-//         <p className="text-[0.5rem]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, repudiandae.</p>
-
-//         {/* Product Grid */}
-//         <div className="feature_product_container w-full grid grid-cols-4 gap-10 mt-4">
-//           {[...Array(4)].map((_, index) => (
-//             <div key={index} className="w-full h-full flex flex-col justify-start items-center">
-//               <div className="bg-[#f5f1d8] relative flex flex-col justify-center items-center bg-center py-4">
-//                 {/* Replace img with Next.js Image component */}
-//                 <Image
-//                   src="/images/product1.png" // Replace with actual image path
-//                   alt={`feature_product_${index + 1}`}
-//                   width={300} // Set appropriate width
-//                   height={100} // Set appropriate height
-//                   className="w-full object-cover"
-//                 />
-//                 <button className="absolute top-2 right-6 text-[0.5rem] p-1 bg-red-800 text-white">New</button>
-//                 <p className="text-[0.5rem] absolute bottom-2 text-[#d7be8d]">Lorem ipsum, dolor sit amet</p>
-//               </div>
-//               <button className="bg-[#c78f42] text-white text-xs px-6 py-1.5">Order it</button>
-//               <p className="text-[0.5rem] text-center">Lorem ipsum dolor sit amet consectetur.</p>
-//             </div>
-//           ))}
-//         </div>
-
-//         {/* Add to Cart Button */}
-//         <button className="bg-darkestRed text-[0.5rem] text-white py-3 px-6 rounded-md">Add to Cart</button>
-//       </div>
-//     </div>
+export default Product;

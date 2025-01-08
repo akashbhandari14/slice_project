@@ -27,7 +27,7 @@ const page = () => {
           {
             spiceArray?.map((currElem, index) => {
               return (
-                <div key={index} className={`info_container flex ${(index % 2 == 0) ? "flex-row-reverse" : ""} max-lg:flex-col justify-between items-center gap-8 p-4 border-b border-gray-400`}>
+                <div key={index} className={`info_container flex ${(index % 2 == 0) ? "flex-row-reverse" : ""} max-lg:flex-col justify-between items-center gap-8 px-4 py-8 border-b border-gray-400`}>
                   <div className='flex flex-col items-start justify-start gap-3'>
                     <h1 className='text-xl font-semibold w-full max-lg:text-center'>{currElem.heading}</h1>
                     <p className='text-sm text-zinc-600'>{currElem.subHeading}</p>
