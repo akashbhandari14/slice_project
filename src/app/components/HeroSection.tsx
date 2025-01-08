@@ -87,6 +87,22 @@ const SpicesCarousel = () => {
       >
         <ChevronRight className="w-6 h-6" />
       </button>
+
+      {/* Slide indicators */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentSlide(index)}
+            className={`w-2 h-2 rounded-full transition-colors ${
+              index === currentSlide 
+                ? 'bg-white' 
+                : 'bg-white/50 hover:bg-white/75'
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
     </div>
   );
 };

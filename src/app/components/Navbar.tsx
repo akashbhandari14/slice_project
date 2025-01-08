@@ -1,14 +1,13 @@
 "use client";
 
-import Image from "next/image";
-import { FaUsers } from "react-icons/fa";
-import { RxTriangleRight } from "react-icons/rx";
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Users, ChevronRight, Search } from "lucide-react";
+import Image from "next/image";
 
 const Navbar = () => {
   const [isClient, setIsClient] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
@@ -18,25 +17,27 @@ const Navbar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+  const toggleSearch = () => {
+    setIsSearchOpen(!isSearchOpen);
+  };
+
   return (
     <>
       {/* Mobile Sidebar */}
       <div
-        className={`fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden ${
-          isSidebarOpen ? "block" : "hidden"
-        }`}
+        className={`fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden ${isSidebarOpen ? "block" : "hidden"
+          }`}
         onClick={toggleSidebar}
       />
-      
+
       <div
-        className={`fixed top-0 left-0 h-full w-64 bg-white z-50 transform transition-transform duration-300 ease-in-out lg:hidden ${
-          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`fixed top-0 left-0 h-full w-64 bg-white z-50 transform transition-transform duration-300 ease-in-out lg:hidden ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
       >
-        <div className="flex justify-between items-center p-4 border-b">
+        <div className="nav_logo flex justify-between items-center p-4 border-b">
           <Image
             src="/images/navbar_logo.PNG"
-            alt="Logo"
+            alt="LOGO"
             width={100}
             height={60}
             priority
@@ -45,26 +46,26 @@ const Navbar = () => {
             <X className="h-6 w-6" />
           </button>
         </div>
-        
+
         <div className="p-4 space-y-4">
           <div className="space-y-2">
             <div className="flex items-center gap-2">
-              <FaUsers className="text-sm" />
+              <Users className="h-4 w-4" />
               <span className="text-sm">Available</span>
             </div>
             <div className="flex items-center gap-2">
-              <RxTriangleRight className="text-sm" />
+              <ChevronRight className="h-4 w-4" />
               <span className="text-sm">Mildfire</span>
             </div>
           </div>
-          
+
           <div className="border-t pt-4">
             <div className="space-y-3">
               <span className="block text-sm">Item1</span>
               <span className="block text-sm">Item2</span>
             </div>
           </div>
-          
+
           <div className="border-t pt-4">
             {isClient &&
               Array.from({ length: 8 }, (_, i) => (
@@ -82,34 +83,74 @@ const Navbar = () => {
 
       {/* Main Navbar */}
       <header className="bg-bgColor relative w-full flex flex-col justify-center items-end border-b border-gray-300 text-xs">
-        {/* Mobile Menu Button */}
-        <button
-          onClick={toggleSidebar}
-          className="lg:hidden absolute left-4 top-1/2 -translate-y-1/2 p-2"
-        >
-          <Menu className="h-6 w-6" />
-        </button>
-
-        {/* Logo */}
-        <div className="absolute top-2 left-16 h-[80%] lg:block hidden">
+        {/* Mobile Header - Only visible on small screens */}
+        <div className="w-full flex justify-between items-center p-4 lg:hidden">
           <Image
             src="/images/navbar_logo.PNG"
-            alt="Logo"
-            width={150}
-            height={90}
+            alt="LOGO"
+            width={100}
+            height={60}
             priority
           />
+          <div className="flex items-center gap-4">
+            <button
+              onClick={toggleSearch}
+              className="p-2"
+              aria-label="Toggle search"
+            >
+              <Search className="h-6 w-6" />
+            </button>
+            <button
+              onClick={toggleSidebar}
+              className="p-2"
+              aria-label="Toggle menu"
+            >
+              <Menu className="h-6 w-6" />
+            </button>
+          </div>
         </div>
 
-        {/* Upper Header - Hidden on mobile */}
+        {/* Mobile Search Bar - Toggled by search icon */}
+        <div
+          className={`w-full lg:hidden transition-all duration-300 ease-in-out ${isSearchOpen ? 'h-16 opacity-100' : 'h-0 opacity-0 overflow-hidden'
+            }`}
+        >
+          <div className="px-4 py-2 flex gap-2">
+            <input
+              type="text"
+              className="flex-1 py-2 bg-transparent border border-gray-400 rounded-lg px-2"
+              placeholder="Search spices here"
+              aria-label="Search spices"
+            />
+            <button
+              className="px-4 py-2 bg-red-600 text-white rounded-sm"
+              aria-label="Search button"
+            >
+              Search
+            </button>
+          </div>
+        </div>
+
+        {/* Logo - Original positioning for desktop */}
+        <div className="absolute top-2 left-16 h-[90%] lg:block hidden">
+        <Image
+                    src="/images/navbar_logo.PNG"
+                    alt="LOGO"
+                    width={100}
+                    height={80}
+                    priority
+                  />
+        </div>
+
+        {/* Upper Header - Original desktop layout */}
         <div className="upper_header w-3/4 hidden lg:flex justify-between items-center py-2 pl-6 pr-24 text-[0.5rem]">
           <div className="upper_header_left flex gap-2">
             <div className="flex justify-start items-center gap-5">
-              <FaUsers className="text-sm" aria-hidden="true" />
+              <Users className="text-sm" aria-hidden="true" />
               <span>Available</span>
             </div>
             <div className="flex justify-start items-center gap-5">
-              <RxTriangleRight className="text-sm" aria-hidden="true" />
+              <ChevronRight className="text-sm" aria-hidden="true" />
               <span>Mildfire</span>
             </div>
           </div>
@@ -119,7 +160,7 @@ const Navbar = () => {
             <div className="vertical_bar w-px bg-red-600" aria-hidden="true"></div>
             {isClient &&
               Array.from({ length: 8 }, (_, index) => (
-                <FaUsers
+                <Users
                   key={index}
                   className="text-sm text-black"
                   aria-hidden="true"
@@ -129,13 +170,13 @@ const Navbar = () => {
         </div>
 
         {/* Horizontal Bar */}
-        <div className="horizontal_bar w-full h-0.5 bg-red-600" aria-hidden="true"></div>
+        <div className="horizontal_bar w-full h-0.5 bg-red-600 max-lg:hidden" aria-hidden="true"></div>
 
-        {/* Lower Header */}
+        {/* Lower Header - Original desktop layout */}
         <div className="lower_header py-2 w-full lg:w-3/4 flex flex-col justify-center items-start gap-3 px-4 lg:pr-24">
-          <div className="lower_header_top w-full flex flex-col lg:flex-row justify-between items-center gap-4 lg:gap-6 lg:pl-6">
-            <span className="hidden lg:block">Searching</span>
-            <div className="w-full flex flex-col lg:flex-row justify-between items-center gap-3 lg:ml-4">
+          <div className="lower_header_top w-full hidden lg:flex lg:flex-row justify-between items-center gap-4 lg:gap-6 lg:pl-6">
+            <span>Searching</span>
+            <div className="w-full flex lg:flex-row justify-between items-center gap-3 lg:ml-4">
               <input
                 type="text"
                 className="w-full py-2 bg-transparent border border-gray-400 rounded-lg px-2"
@@ -149,20 +190,18 @@ const Navbar = () => {
                 Search
               </button>
             </div>
-            <div className="flex justify-start items-center gap-2 overflow-hidden">
-              <Image
-                src="/images/spice_img_1.png"
-                width={24}
-                height={24}
+            <div className="nav_logo_container flex justify-start items-center gap-2 overflow-hidden">
+              <img
+                src="/api/placeholder/24/24"
                 alt="Spice"
-                priority
+                className="h-6 w-6"
               />
               <span className="text-[0.5rem] text-red-600">
                 Loremkfsjkjfdsdfdsgdgfgfgdsr
               </span>
             </div>
           </div>
-          
+
           {/* Navigation - Hidden on mobile (shown in sidebar instead) */}
           <nav className="lower_header_bottom w-full hidden lg:flex justify-between items-center">
             {isClient &&
