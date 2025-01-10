@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 
@@ -17,7 +18,7 @@ const Category = () => {
               [1, 2, 3, 4].map((currElem, index) => {
                 return (
                   <>
-                    <div key={index} className='w-full flex flex-col justify-start items-center'>
+                    <Link href="product-detail"><div key={index} className='w-full flex flex-col justify-start items-center'>
                       <div className='bg-[#f0ead4] relative w-full flex flex-col justify-center items-center bg-center'>
                         <div className="category_product_main_info w-full bg-darkRed flex flex-col justify-center items-center text-white py-6 text-center">
                           <span className='text-2xl max-sm:text-xl font-semibold m-0'>Regular Pack</span>
@@ -30,7 +31,7 @@ const Category = () => {
                       </div>
                       <button className='bg-[#c78f42] text-white text-xs px-6 py-1.5'>Order it</button>
                       <p className='text-[0.5rem] text-center'>Lorem ipsum dolor sit amet consectetur.</p>
-                    </div>
+                    </div></Link>
                   </>
                 )
               })

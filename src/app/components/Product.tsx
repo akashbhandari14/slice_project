@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import Link from 'next/link';
 
 const Product = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -84,7 +85,7 @@ const Product = () => {
                 style={{ transform: `translateX(-${currentSlide * 50}%)` }}
               >
                 {products.map((product, index) => (
-                  <div
+                  <Link href="single-product"><div
                     key={product.id}
                     className="w-1/2 px-2 flex-shrink-0 transition-all duration-500"
                   >
@@ -108,6 +109,7 @@ const Product = () => {
                       <p className="text-xs mt-1">Lorem ipsum dolor sit amet.</p>
                     </div>
                   </div>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -130,12 +132,12 @@ const Product = () => {
         {!isMobile && (
           <div className="w-full grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-6">
             {products.map((product) => (
-              <div
+              <Link href="single-product"><div
                 key={product.id}
                 className="flex flex-col items-center"
               >
                 <div className="bg-[#f0ead4] relative w-full p-4 flex flex-col justify-center items-center">
-                    {/* <Image src={product.image} alt={product.title} className="w-full h-80 object-cover hover:scale-105 transition-transform duration-300" width={400} height={400} /> */}
+                  {/* <Image src={product.image} alt={product.title} className="w-full h-80 object-cover hover:scale-105 transition-transform duration-300" width={400} height={400} /> */}
                   <img
                     src={product.image}
                     alt={product.title}
@@ -154,7 +156,7 @@ const Product = () => {
                   </button>
                   <p className="text-xs mt-2">Lorem ipsum dolor sit amet consectetur.</p>
                 </div>
-              </div>
+              </div></Link>
             ))}
           </div>
         )}
@@ -163,6 +165,19 @@ const Product = () => {
           View in Cart
         </button>
       </div>
+      <section className=" relative w-full py-6 bg-bgColor">
+        <div className="main_info">
+          <div className="py-4 bg-[#eee7d5] flex flex-wrap gap-3 justify-center items-center max-sm:text-[0.5rem]">
+            <span className="text-sm text-red-800">Lorem ipsum</span>
+            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+          </div>
+        </div>
+        <p className="text-[0.5rem] absolute bottom-0 left-1/3 max-sm:left-28">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, architecto!
+        </p>
+      </section>
+
     </div>
   );
 };

@@ -19,6 +19,18 @@ const SpicesCarousel = () => {
       image: "/api/placeholder/1920/600",
       buttonText: "Order It"
     },
+    {
+      title: "This is the Third Slider",
+      description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat aut quo et. Aspernatur ea, tenetur maiores magnam repudiandae quis eum quod id aut eaque aliquid veritatis enim iusto.",
+      image: "/api/placeholder/1920/600",
+      buttonText: "Order It"
+    },
+    {
+      title: "This is the Fourth Slider",
+      description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat aut quo et. Aspernatur ea, tenetur maiores magnam repudiandae quis eum quod id aut eaque aliquid veritatis enim iusto.",
+      image: "/api/placeholder/1920/600",
+      buttonText: "Order It"
+    },
     // Add more slides here as needed
   ];
 
@@ -33,13 +45,14 @@ const SpicesCarousel = () => {
   return (
     <div className="relative w-full h-[400px] overflow-hidden">
       {/* Main carousel container */}
-      <div className="relative w-full h-full">
+      <div 
+        className="flex transition-transform duration-500 ease-in-out h-full"
+        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+      >
         {slides.map((slide, index) => (
           <div
             key={index}
-            className={`absolute w-full h-full transition-transform duration-500 ease-in-out transform ${
-              index === currentSlide ? 'translate-x-0' : 'translate-x-full'
-            }`}
+            className="flex-shrink-0 w-full h-full relative"
           >
             {/* Background image */}
             <div className="absolute inset-0">
@@ -88,13 +101,13 @@ const SpicesCarousel = () => {
         <ChevronRight className="w-6 h-6" />
       </button>
 
-      {/* Slide indicators */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+      {/* Rectangle indicators */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-3">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`w-2 h-2 rounded-full transition-colors ${
+            className={`w-8 h-2 transition-colors ${
               index === currentSlide 
                 ? 'bg-white' 
                 : 'bg-white/50 hover:bg-white/75'

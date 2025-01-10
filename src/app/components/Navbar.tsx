@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Menu, X, Users, ChevronRight, Search } from "lucide-react";
+import { IoSearch } from "react-icons/io5";
 import Image from "next/image";
 
 const Navbar = () => {
@@ -115,31 +116,32 @@ const Navbar = () => {
           className={`w-full lg:hidden transition-all duration-300 ease-in-out ${isSearchOpen ? 'h-16 opacity-100' : 'h-0 opacity-0 overflow-hidden'
             }`}
         >
-          <div className="px-4 py-2 flex gap-2">
+          <div className="px-4 flex justify-start items-center border border-gray-400 rounded-full mx-6">
+            <IoSearch className="text-2xl"/>
             <input
               type="text"
-              className="flex-1 py-2 bg-transparent border border-gray-400 rounded-lg px-2"
+              className="flex-1 bg-transparent rounded-lg px-4 py-3 outline-none border-none text-lg"
               placeholder="Search spices here"
               aria-label="Search spices"
             />
-            <button
+            {/* <button
               className="px-4 py-2 bg-red-600 text-white rounded-sm"
               aria-label="Search button"
             >
               Search
-            </button>
+            </button> */}
           </div>
         </div>
 
         {/* Logo - Original positioning for desktop */}
         <div className="absolute top-2 left-16 h-[90%] lg:block hidden">
-        <Image
-                    src="/images/navbar_logo.PNG"
-                    alt="LOGO"
-                    width={100}
-                    height={80}
-                    priority
-                  />
+          <Image
+            src="/images/navbar_logo.PNG"
+            alt="LOGO"
+            width={100}
+            height={80}
+            priority
+          />
         </div>
 
         {/* Upper Header - Original desktop layout */}
@@ -177,28 +179,12 @@ const Navbar = () => {
           <div className="lower_header_top w-full hidden lg:flex lg:flex-row justify-between items-center gap-4 lg:gap-6 lg:pl-6">
             <span>Searching</span>
             <div className="w-full flex lg:flex-row justify-between items-center gap-3 lg:ml-4">
-              <input
-                type="text"
-                className="w-full py-2 bg-transparent border border-gray-400 rounded-lg px-2"
-                placeholder="Search spices here"
-                aria-label="Search spices"
-              />
-              <button
-                className="w-full max-sm:w-[88%] max-sm:ms-auto lg:w-auto py-2 px-8 bg-red-600 text-white rounded-sm"
-                aria-label="Search button"
-              >
-                Search
-              </button>
+              <input type="text" className="w-full py-2 bg-transparent border border-gray-400 rounded-lg px-2" placeholder="Search spices here" aria-label="Search spices"  />
+              <button className="w-full max-sm:w-[88%] max-sm:ms-auto lg:w-auto py-2 px-8 bg-red-600 text-white rounded-sm" aria-label="Search button"> Search </button>
             </div>
             <div className="nav_logo_container flex justify-start items-center gap-2 overflow-hidden">
-              <img
-                src="/api/placeholder/24/24"
-                alt="Spice"
-                className="h-6 w-6"
-              />
-              <span className="text-[0.5rem] text-red-600">
-                Loremkfsjkjfdsdfdsgdgfgfgdsr
-              </span>
+              <img src="/api/placeholder/24/24" alt="Spice" className="h-6 w-6" />
+              <span className="text-[0.5rem] text-red-600"> Loremkfsjkjfdsdfdsgdgfgfgdsr </span>
             </div>
           </div>
 
