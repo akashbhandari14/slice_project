@@ -43,7 +43,7 @@ const SpicesCarousel = () => {
   };
 
   return (
-    <div className="relative w-full h-[400px] overflow-hidden">
+    <div className="relative w-full h-[400px] max-lg:h-[80vh] overflow-hidden">
       {/* Main carousel container */}
       <div 
         className="flex transition-transform duration-500 ease-in-out h-full"

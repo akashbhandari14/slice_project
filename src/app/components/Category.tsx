@@ -1,47 +1,79 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import React from 'react'
+import React from 'react';
+import { ChevronRight } from 'lucide-react';
 
+interface CategoryArray {
+  id: string;
+  title: string;
+  image: string;
+  backgroundColor: string;
+}
 
-
+const categories: CategoryArray[] = [
+  {
+    id: 'everyday-masala',
+    title: 'Everyday Masala',
+    image: '/images/category_img_1.webp',
+    backgroundColor: 'bg-blue-500',
+  },
+  {
+    id: 'premium-dryfruits',
+    title: 'Premium Dryfruits',
+    image: '/images/category_img_2.webp',
+    backgroundColor: 'bg-green-500',
+  },
+  {
+    id: 'whole-masala',
+    title: 'Whole Masala',
+    image: '/images/category_img_4.webp',
+    backgroundColor: 'bg-teal-500',
+  },
+  {
+    id: 'immunity-masala',
+    title: 'Immunity Masala',
+    image: '/images/category_img_5.webp',
+    backgroundColor: 'bg-green-500',
+  },
+  {
+    id: 'dry-fruits',
+    title: 'Dry Fruits',
+    image: '/images/category_img_4.webp',
+    backgroundColor: 'bg-amber-500',
+  },
+];
 
 const Category = () => {
   return (
-    <>
-      <div className="category_container w-full bg-bgColor overflow-visible">
-        <div className="category_inner_container w-[85%] max-sm:w-[95%] mx-auto flex flex-col justify-start items-center py-6 gap-2">
-          <h1 className='text-3xl'>Categraries</h1>
-          <p className='text-[0.5rem] text-center'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis quia ad, modi deserunt voluptatem impedit cum voluptate ab aperiam repellat.</p>
-
-          <div className="category_product_container w-full max-sm:w-[95%] grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 gap-10 max-sm:gap-x-3 max-sm:gap-y-12 mt-4">
-            {
-              [1, 2, 3, 4].map((currElem, index) => {
-                return (
-                  <>
-                    <Link href="product-detail"><div key={index} className='w-full flex flex-col justify-start items-center'>
-                      <div className='bg-[#f0ead4] relative w-full flex flex-col justify-center items-center bg-center'>
-                        <div className="category_product_main_info w-full bg-darkRed flex flex-col justify-center items-center text-white py-6 text-center">
-                          <span className='text-2xl max-sm:text-xl font-semibold m-0'>Regular Pack</span>
-                          <button className='text-[0.5rem] w-5 px-8 py-0.5 rounded-md flex justify-center items-center border border-white m-0'>Buy Now</button>
-                          <img src="/images/spice_img_1.png" className=' absolute -top-2 w-5 h-5 rounded-full' alt="" />
-                        </div>
-                        <img src="/images/spice_img.png" alt="spice img" className="w-full h-56 object-cover hover:scale-105 transition-transform duration-300" />
-                        <p className='text-[0.5rem] absolute top-28 text-[#d7be8d]'>Lorem ipsum, dolor sit amet</p>
-                        <p className='text-[0.5rem] absolute bottom-0 text-[#d7be8d]'>Lorem ipsum, dolor sit amet</p>
-                      </div>
-                      <button className='bg-[#c78f42] text-white text-xs px-6 py-1.5'>Order it</button>
-                      <p className='text-[0.5rem] text-center'>Lorem ipsum dolor sit amet consectetur.</p>
-                    </div></Link>
-                  </>
-                )
-              })
-            }
-
-          </div>
+    <div className='w-full bg-bgColor'>
+      <div className="w-[95%] max-sm:w-[95%] 2xl:w-[70%] mx-auto px-4 py-8">
+        <h2 className=" w-full text-3xl font-bold text-center mb-8 text-gray-800">
+          Categories
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          {categories.map((category) => (
+            <div
+              key={category.id}
+              className="group relative rounded-lg overflow-hidden cursor-pointer transition-transform duration-300 hover:scale-105"
+            >
+              <div className={` ${category.backgroundColor} h-32 relative`}>
+                <img src="/images/category_img_1.webp" className=' w-full bg-cover h-full' alt="" />
+                <div className="absolute inset-0 flex items-center justify-between p-4">
+                  <div>
+                    <h3 className="text-white font-semibold text-lg mb-1">
+                      {category.title}
+                    </h3>
+                    <div className="flex items-center text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <span className="mr-1">View all</span>
+                      <ChevronRight size={16} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default Category
+export default Category;

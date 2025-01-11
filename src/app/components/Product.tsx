@@ -1,183 +1,83 @@
 "use client";
 
-import Image from 'next/image';
-import { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import Link from 'next/link';
+import React from "react";
 
-const Product = () => {
-  const [isMobile, setIsMobile] = useState(false);
-  const [currentSlide, setCurrentSlide] = useState(0);
+interface ProductCardProps {
+  discount: string;
+  price: number;
+  originalPrice: number;
+}
 
-  const products = [
-    { id: 1, image: '/images/spice_img.png', isNew: true, title: 'Product 1' },
-    { id: 2, image: '/images/spice_img.png', isNew: true, title: 'Product 2' },
-    { id: 3, image: '/images/spice_img.png', isNew: true, title: 'Product 3' },
-    { id: 4, image: '/images/spice_img.png', isNew: true, title: 'Product 4' },
-    { id: 5, image: '/images/spice_img.png', isNew: true, title: 'Product 5' },
-    { id: 6, image: '/images/spice_img.png', isNew: true, title: 'Product 6' },
-    { id: 7, image: '/images/spice_img.png', isNew: true, title: 'Product 7' },
-    { id: 8, image: '/images/spice_img.png', isNew: true, title: 'Product 8' }
+const ProductCard: React.FC<ProductCardProps> = ({ discount, price, originalPrice }) => (
+  <div className="flex-shrink-0 w-[48%] sm:w-[48%] md:w-auto">
+    <div className="flex flex-col items-center justify-start gap-3">
+      <div className="product_img relative rounded-md w-full group">
+        <img
+          src="/images/product_img_1.webp"
+          className="w-full h-full object-cover rounded-md"
+          alt="Product"
+        />
+        <button className="py-0.5 px-3 absolute top-4 right-4 bg-green-600 rounded-full text-white text-sm">
+          {discount}
+        </button>
+        {/* Added group-hover and transition for smooth appearance */}
+        <div className="product_price absolute bottom-0 w-full flex justify-center items-center gap-2 bg-red-600 py-2 text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <p>100g</p>
+          <p>300g</p>
+          <p>500g</p>
+        </div>
+      </div>
+      <h3 className="font-semibold text-sm md:text-base">Product Title</h3>
+      <p className="text-base md:text-xl font-semibold text-gray-500">
+        <span className="line-through text-gray-600">₹ {originalPrice}</span>{" "}
+        <span className="text-red-600">From</span> ₹ {price}
+      </p>
+    </div>
+  </div>
+);
+
+interface ProductData {
+  id: number;
+  discount: string;
+  price: number;
+  originalPrice: number;
+}
+
+const Product: React.FC = () => {
+  const products: ProductData[] = [
+    { id: 1, discount: "-28%", price: 73, originalPrice: 101 },
+    { id: 2, discount: "-28%", price: 73, originalPrice: 101 },
+    { id: 3, discount: "-28%", price: 73, originalPrice: 101 },
+    { id: 4, discount: "-28%", price: 73, originalPrice: 101 },
   ];
 
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 640);
-    };
-
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  const nextSlide = () => {
-    setCurrentSlide(prev =>
-      prev >= products.length - 2 ? 0 : prev + 1
-    );
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide(prev =>
-      prev === 0 ? products.length - 2 : prev - 1
-    );
-  };
-
-  // Get visible products for mobile slider
-  const getVisibleProducts = () => {
-    const visibleProducts = [];
-    const firstIndex = currentSlide;
-    const secondIndex = (currentSlide + 1) % products.length;
-
-    visibleProducts.push(products[firstIndex]);
-    visibleProducts.push(products[secondIndex]);
-
-    return visibleProducts;
-  };
-
   return (
-    <div className="feature_container w-full bg-[#f9f3e5] py-8">
-      <div className="feature_inner_container w-[85%] max-sm:w-[95%] mx-auto flex flex-col justify-start items-center gap-6">
-        <div className="text-center">
-          <h1 className="text-3xl text-darkRed">Features.</h1>
-          <p className="text-sm text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+    <div className="product_page bg-bgColor py-8">
+      <div className="product_page_inner w-[95%] 2xl:w-[70%] mx-auto">
+        <div className="product_page_heading mb-8 flex max-lg:flex-col max-lg:gap-4 justify-between items-center">
+          <h3 className="text-2xl w-full md:text-4xl font-semibold">Popular products</h3>
+          <div className="product_type w-full flex justify-end items-center gap-3 max-lg:text-xs max-md:w-[100vw] overflow-x-scroll">
+            <button className="py-1 px-4 rounded-full bg-gray-300">Everyday Masala</button>
+            <button className="py-1 px-4 rounded-full bg-gray-300">Immunity Masala</button>
+            <button className="py-1 px-4 rounded-full bg-gray-300">Blended Spices</button>
+            <button className="py-1 px-4 rounded-full bg-gray-300">Pre Mix</button>
+            <button className="py-1 px-4 rounded-full bg-gray-300">Shop all</button>
+          </div>
         </div>
 
-        {/* Mobile Slider */}
-        {isMobile && (
-          <div className="w-full relative">
-            <button
-              onClick={prevSlide}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow-lg"
-            >
-              <ChevronLeft size={24} />
-            </button>
-
-            <button
-              onClick={nextSlide}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white p-2 rounded-full shadow-lg"
-            >
-              <ChevronRight size={24} />
-            </button>
-
-            <div className="overflow-hidden">
-              <div
-                className="flex transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(-${currentSlide * 50}%)` }}
-              >
-                {products.map((product, index) => (
-                  <Link href="single-product"><div
-                    key={product.id}
-                    className="w-1/2 px-2 flex-shrink-0 transition-all duration-500"
-                  >
-                    <div className="bg-[#f0ead4] relative p-4 flex flex-col items-center">
-                      <img
-                        src={product.image}
-                        alt={product.title}
-                        className="w-full h-60 object-cover"
-                      />
-                      {product.isNew && (
-                        <span className="absolute top-2 right-2 text-xs px-2 py-1 max-sm:py-0 max-sm:px-1 bg-red-800 text-white">
-                          New
-                        </span>
-                      )}
-                      <p className="text-xs mt-2 text-[#d7be8d]">Lorem ipsum, dolor sit amet</p>
-                    </div>
-                    <div className="text-center mt-2">
-                      <button className="bg-[#c78f42] text-white text-xs px-4 py-1 rounded">
-                        Order it
-                      </button>
-                      <p className="text-xs mt-1">Lorem ipsum dolor sit amet.</p>
-                    </div>
-                  </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-            {/* Dots indicator */}
-            <div className="flex justify-center gap-2 mt-4">
-              {Array.from({ length: Math.ceil(products.length / 2) }).map((_, index) => (
-                <button
-                  key={index}
-                  className={`h-2 rounded-full transition-all ${Math.floor(currentSlide / 2) === index ? 'w-6 bg-darkRed' : 'w-2 bg-gray-300'
-                    }`}
-                  onClick={() => setCurrentSlide(index * 2)}
-                />
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Desktop/Tablet Grid */}
-        {!isMobile && (
-          <div className="w-full grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-6">
+        <div className="relative">
+          <div className="flex gap-4 overflow-x-auto pb-4 md:pb-0 scrollbar-hide md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-8">
             {products.map((product) => (
-              <Link href="single-product"><div
+              <ProductCard
                 key={product.id}
-                className="flex flex-col items-center"
-              >
-                <div className="bg-[#f0ead4] relative w-full p-4 flex flex-col justify-center items-center">
-                  {/* <Image src={product.image} alt={product.title} className="w-full h-80 object-cover hover:scale-105 transition-transform duration-300" width={400} height={400} /> */}
-                  <img
-                    src={product.image}
-                    alt={product.title}
-                    className="w-full h-96 object-cover hover:scale-105 transition-transform duration-300"
-                  />
-                  {product.isNew && (
-                    <span className="absolute top-2 right-6 text-xs px-2 py-1 bg-red-800 text-white">
-                      New
-                    </span>
-                  )}
-                  <p className="text-sm mt-2 text-[#d7be8d]">Lorem ipsum, dolor sit amet</p>
-                </div>
-                <div className="text-center">
-                  <button className="bg-[#c78f42] text-white text-sm px-6 py-2 rounded hover:bg-[#b27832] transition-colors">
-                    Order it
-                  </button>
-                  <p className="text-xs mt-2">Lorem ipsum dolor sit amet consectetur.</p>
-                </div>
-              </div></Link>
+                discount={product.discount}
+                price={product.price}
+                originalPrice={product.originalPrice}
+              />
             ))}
           </div>
-        )}
-
-        <button className="bg-darkestRed text-sm text-white py-3 px-8 rounded-md hover:bg-red-900 transition-colors">
-          View in Cart
-        </button>
-      </div>
-      <section className=" relative w-full py-6 bg-bgColor">
-        <div className="main_info">
-          <div className="py-4 bg-[#eee7d5] flex flex-wrap gap-3 justify-center items-center max-sm:text-[0.5rem]">
-            <span className="text-sm text-red-800">Lorem ipsum</span>
-            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
-            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
-          </div>
         </div>
-        <p className="text-[0.5rem] absolute bottom-0 left-1/3 max-sm:left-28">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, architecto!
-        </p>
-      </section>
-
+      </div>
     </div>
   );
 };
