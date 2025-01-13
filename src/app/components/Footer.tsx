@@ -22,6 +22,9 @@ export default function Footer() {
     }
   };
 
+  const date = new Date();
+  const year = date.getFullYear();
+
   return (
     <footer className="bg-[#942c23] text-white">
       {/* Hero Section - Stacks better on mobile */}
@@ -49,7 +52,7 @@ export default function Footer() {
               </div>
             </div>
 
-            <button className="bg-[#c78f42] text-white px-6 py-3 rounded-full hover:bg-green-600 transition-colors text-sm md:text-base w-full md:w-auto">
+            <button className="bg-[#c78f42] text-white px-6 py-3 rounded-full hover:bg-black transition-colors text-sm md:text-base w-full md:w-auto">
               Shop premium spices today
             </button>
           </div>
@@ -68,8 +71,8 @@ export default function Footer() {
                 className="bg-[#f0ead4]/50 placeholder-white px-4 py-3 rounded-lg flex-grow text-sm md:text-base"
               />
               <button type="submit" 
-                className="bg-[#c78f42] px-6 py-3 rounded-lg hover:bg-green-600 transition-colors whitespace-nowrap text-sm md:text-base">
-                Sign up!
+                className="bg-[#c78f42] px-6 py-3 rounded-lg hover:bg-black transition-colors whitespace-nowrap text-sm md:text-base">
+                Subscribe it
               </button>
             </div>
           </form>
@@ -92,9 +95,9 @@ export default function Footer() {
               <ul className={`space-y-3 overflow-hidden transition-all duration-300 ${
                 expandedSection === 'company' ? 'max-h-48 pb-4' : 'max-h-0 md:max-h-full'
               }`}>
-                <li><Link href="/" className="hover:text-yellow-400 text-sm md:text-base block py-1">About Us</Link></li>
+                <li><Link href="/about" className="hover:text-yellow-400 text-sm md:text-base block py-1">About Us</Link></li>
                 <li><Link href="/terms" className="hover:text-yellow-400 text-sm md:text-base block py-1">Terms of Service</Link></li>
-                <li><Link href="/privacy" className="hover:text-yellow-400 text-sm md:text-base block py-1">Privacy Policy</Link></li>
+                <li><Link href="/privacy-policy" className="hover:text-yellow-400 text-sm md:text-base block py-1">Privacy Policy</Link></li>
                 <li><Link href="/contact" className="hover:text-yellow-400 text-sm md:text-base block py-1">Contact Us</Link></li>
               </ul>
             </div>
@@ -167,13 +170,13 @@ export default function Footer() {
         {/* Bottom Bar - Centered on mobile */}
         <div className="flex flex-col items-center md:flex-row md:justify-between gap-4 pt-6 border-t border-[#ffffff20]">
           <div className="flex items-center order-2 md:order-1">
-            <div className="h-8 w-8 rounded flex justify-center items-center mr-2">
+            <div className="h-20 w-auto rounded flex justify-center items-center mr-2">
               <img src="/images/navbar_logo.PNG" alt="" className='h-full w-full' />
             </div>
             <span className="text-xl md:text-2xl">Rai's Spices</span>
           </div>
           <div className="text-sm text-gray-300 order-1 md:order-2">
-            © 2024 Rai's Spices. All rights reserved.
+            © {year} Rai's Spices. All rights reserved.
           </div>
         </div>
       </div>

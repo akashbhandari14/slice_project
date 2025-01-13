@@ -12,9 +12,9 @@ const page = () => {
       <div>
         <HeroSection />
         <Category />
+        <Product />
         <MiniSection />
         <Banner />
-        <Product />
         <TrustedBy />
       </div>
     </>

@@ -18,12 +18,12 @@ const page = () => {
   ]
   return (
     <>
-      <div className="contact_us">
-        <div className="contact_us_heading_box w-full h-[280px] max-sm:h-[180px] max-md:px-2 flex flex-col gap-1 justify-center items-center bg-yellow-50 mb-16">
+      <div className="contact_us bg-bgColor">
+        <div className="contact_us_heading_box w-full h-[280px] max-sm:h-[180px] max-md:px-2 flex flex-col gap-1 justify-center items-center bg-yellow-50 py-16">
           <h1 className='text-4xl font-medium'>About Us</h1>
           <p className='text-sm text-zinc-600 text-center'>Learn more about Spice Delight, our mission, and our journey in bringing premium spices to your kitchen.</p>
         </div>
-        <div className="contact_us_inner_container w-[90%] mx-auto my-12 flex flex-col">
+        <div className="contact_us_inner_container w-[90%] mx-auto py-12 flex flex-col">
           {
             spiceArray?.map((currElem, index) => {
               return (

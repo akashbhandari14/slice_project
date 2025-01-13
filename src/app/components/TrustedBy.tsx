@@ -39,7 +39,7 @@ const TrustedBy: React.FC = () => {
     {
       id: 5,
       name: "Symega",
-      imagePath: "/images/trusted_by_img_5.avif",
+      imagePath: "/images/trusted_by_img_5.png",
       width: "w-28 md:w-36"
     },
     {
@@ -60,8 +60,8 @@ const TrustedBy: React.FC = () => {
           </h2>
         </div>
 
-        {/* Logos Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 md:gap-12 items-center justify-items-center max-w-6xl mx-auto">
+        {/* Logos Grid - Desktop & Tablet */}
+        <div className="hidden md:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 md:gap-12 items-center justify-items-center max-w-6xl mx-auto">
           {companies.map((company) => (
             <div
               key={company.id}
@@ -76,13 +76,59 @@ const TrustedBy: React.FC = () => {
           ))}
         </div>
 
-        {/* View All Button */}
-        {/* <div className="text-center mt-12">
-          <button className="inline-flex items-center gap-2 px-6 py-3 bg-transparent text-gray-700 hover:text-gray-900 rounded-full transition-colors duration-300 group">
-            View All Partners
-            <FaArrowRight className="transform group-hover:translate-x-1 transition-transform duration-300" />
-          </button>
-        </div> */}
+        {/* Logos Horizontal Scroll - Mobile Only */}
+        <div className="md:hidden overflow-x-auto custom-scrollbar">
+          <div className="inline-flex gap-8 min-w-max px-4">
+            {companies.map((company) => (
+              <div
+                key={company.id}
+                className="relative group cursor-pointer place-content-center transform transition-transform duration-300 hover:scale-110"
+              >
+                <img
+                  src={company.imagePath}
+                  alt={company.name}
+                  className={`${company.width} object-contain`}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <style jsx global>{`
+          .custom-scrollbar {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+          }
+          
+          .custom-scrollbar::-webkit-scrollbar {
+            display: none;
+          }
+          
+          /* Show scrollbar only when scrolling */
+          .custom-scrollbar:hover::-webkit-scrollbar,
+          .custom-scrollbar:active::-webkit-scrollbar,
+          .custom-scrollbar:focus::-webkit-scrollbar {
+            display: block;
+            height: 4px;
+          }
+          
+          .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+          }
+          
+          .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #000000;
+            border-radius: 4px;
+          }
+          
+          /* For Firefox */
+          .custom-scrollbar:hover,
+          .custom-scrollbar:active,
+          .custom-scrollbar:focus {
+            scrollbar-width: thin;
+            scrollbar-color: #000000 transparent;
+          }
+        `}</style>
       </div>
     </section>
   );

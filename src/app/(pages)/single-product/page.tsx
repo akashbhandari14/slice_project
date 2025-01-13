@@ -37,7 +37,7 @@ export default function page() {
 
   return (
     <div className="w-full mx-auto px-4 py-8 bg-[#fef9e5]">
-      <div className='single_product_inner_container w-[90%] mx-auto'>
+      <div className='single_product_inner_container w-[90%] max-sm:w-[95%] mx-auto'>
         {/* This is the code for the Breadcrumb */}
         <div className="mb-6 text-gray-600">
           <span className="hover:text-gray-900 cursor-pointer">Home</span>
@@ -53,7 +53,7 @@ export default function page() {
           <Single_Product_Main_Info />
 
         </div>
-        <ProductDescription />
+        {/* <ProductDescription /> */}
         <PeopleAlsoBought />
         <CustomerReviews />
       </div>

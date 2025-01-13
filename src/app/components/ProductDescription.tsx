@@ -16,7 +16,7 @@ export default function ProductDescription() {
   ];
 
   return (
-    <div className="w-full mt-16 mx-auto p-4">
+    <div className="w-full mt-16 mx-auto p-4 max-sm:px-0">
       <div className="flex flex-col md:flex-row gap-6">
         {/* Tabs - Vertical on desktop, horizontal on mobile */}
         <div className="md:w-48 h-fit flex justify-start items-start gap-5 md:flex-col overflow-x-auto md:overflow-x-visible over border-l-2 border-gray-400 max-md:border-none">
@@ -102,13 +102,13 @@ export default function ProductDescription() {
           )}
           {activeTab === 'history' && (
             <div className='flex flex-col gap-4'>
-                <h3 className='text-3xl font-semibold'>History & Sources</h3>
-                <p>Kashmiri chilli powder comes from the Kashmir area of northern India, which is known for its rich culinary tradition and vibrant methods of agriculture. Kashmiri chilies are known for their deep red color and mild heat, which have made them popular in India and around the world. Kashmiri chilli powder is used to enhance the visual appearance and flavor of many different meals.
+              <h3 className='text-3xl font-semibold'>History & Sources</h3>
+              <p>Kashmiri chilli powder comes from the Kashmir area of northern India, which is known for its rich culinary tradition and vibrant methods of agriculture. Kashmiri chilies are known for their deep red color and mild heat, which have made them popular in India and around the world. Kashmiri chilli powder is used to enhance the visual appearance and flavor of many different meals.
 
-                  Kashmiri chilli powder is a popular spice in Indian kitchens, recognized for adding deep red color and mild heat to foods. It is widely used in traditional Indian cuisine, including curries, tandoori meals, and biryanis, where color and flavor have priority over severe spicy. Its mild heat makes it appropriate for a wide range of tastes, even those who prefer less spicy foods.
-                </p>
-                  <h3 className='text-3xl font-semibold'>Gujarati Kadhi:</h3>
-                  <p>Our Kashmiri chili powder can also be used to add spice and flavor to Gujarati Kadhi. Try adding a pinch of chili powder to a margarita for a spicy twist. A small amount of Kashmiri chili powder is used to balance off the sweetness.</p>
+                Kashmiri chilli powder is a popular spice in Indian kitchens, recognized for adding deep red color and mild heat to foods. It is widely used in traditional Indian cuisine, including curries, tandoori meals, and biryanis, where color and flavor have priority over severe spicy. Its mild heat makes it appropriate for a wide range of tastes, even those who prefer less spicy foods.
+              </p>
+              <h3 className='text-3xl font-semibold'>Gujarati Kadhi:</h3>
+              <p>Our Kashmiri chili powder can also be used to add spice and flavor to Gujarati Kadhi. Try adding a pinch of chili powder to a margarita for a spicy twist. A small amount of Kashmiri chili powder is used to balance off the sweetness.</p>
             </div>
           )}
           {activeTab === 'ingredients' && (

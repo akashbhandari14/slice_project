@@ -160,7 +160,7 @@ const page = () => {
 
             <button
               type="submit"
-              className="w-full flex justify-center p-3 bordernone rounded-md shadow-sm text-sm font-medium text-white bg-red-800 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+              className="w-full flex justify-center p-3 bordernone rounded-md shadow-sm text-sm font-medium text-white bg-red-800 hover:bg-black"
             >
               Sign Up
             </button>

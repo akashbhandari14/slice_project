@@ -1,5 +1,12 @@
 "use client";
 
+import { useState } from 'react';
+import Image from 'next/image';
+import { Heart, Minus, Plus, Share2, ChevronDown, ChevronUp } from 'lucide-react';
+import ProductDescription from '@/app/components/ProductDescription';
+import PeopleAlsoBought from '@/app/components/PeopleAlsoBought';
+import CustomerReviews from '@/app/components/CustomerReview';
+import Single_Product_Main_Img_Container from './Single_Product_Main_Img_Container';
 
 type ProductImage = {
     id: number;
@@ -23,24 +30,10 @@ type Product = {
     images: ProductImage[];
 };
 
-// page.tsx
-'use client';
-
-import { useState } from 'react';
-import Image from 'next/image';
-import { Heart, Minus, Plus, Share2 } from 'lucide-react';
-import ProductDescription from '@/app/components/ProductDescription';
-import PeopleAlsoBought from '@/app/components/PeopleAlsoBought';
-import CustomerReviews from '@/app/components/CustomerReview';
-import Single_Product_Main_Img_Container from './Single_Product_Main_Img_Container';
-
 const Single_Product_Main_Info = () => {
     const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-
     const [quantity, setQuantity] = useState(1);
-
-
-
+    const [isExpanded, setIsExpanded] = useState(false);
 
     const handleQuantityChange = (action: 'increase' | 'decrease') => {
         if (action === 'increase') {
@@ -98,19 +91,35 @@ const Single_Product_Main_Info = () => {
                     <span className="text-gray-600">{product.reviews} reviews</span>
                 </div>
 
-                <p className="text-gray-700 text-sm mb-6">{product.description}</p>
+                {/* Modified Product Description with Show More/Less */}
+                <div className="relative mb-6">
+                    <p className={`product_description text-gray-700 text-sm transition-all duration-300 ${
+                        isExpanded ? '' : 'line-clamp-2'
+                    }`}>
+                        {product.description}
+                    </p>
+                    <button
+                        onClick={() => setIsExpanded(!isExpanded)}
+                        className="text-red-600 text-sm font-medium flex items-center gap-1 hover:text-red-700 mt-1"
+                    >
+                        {isExpanded ? (
+                            <>
+                                Show Less 
+                                <ChevronUp className="w-4 h-4" />
+                            </>
+                        ) : (
+                            <>
+                                Show More 
+                                <ChevronDown className="w-4 h-4" />
+                            </>
+                        )}
+                    </button>
+                </div>
 
                 <div className="flex items-center gap-4 mb-6">
                     <span className="text-xl font-bold">₹{product.price}</span>
                     <span className="line-through">₹{product.originalPrice}</span>
                     <span className="bg-red-600 text-white px-2 py-1 text-sm font-semibold rounded-full">21% OFF</span>
-                </div>
-
-                <div className="mb-2">
-                    <div className="flex items-center gap-1 text-black font-semibold mb-2">
-                        <span>🔥</span>
-                        <span>{product.soldCount} sold in last {product.soldTimeframe}</span>
-                    </div>
                 </div>
 
                 {/* Size Selection */}
@@ -131,24 +140,6 @@ const Single_Product_Main_Info = () => {
                     </div>
                 </div>
 
-                {/* Pack Type Selection */}
-                <div className="mb-6">
-                    <p className="font-medium mb-2">Pack Type:</p>
-                    <div className="flex gap-2">
-                        {packOptions.map(pack => (
-                            <button
-                                key={pack}
-                                className={`px-4 py-0.5 rounded-full border ${pack === product.packType
-                                    ? 'bg-red-700 text-white border-red-700'
-                                    : 'border-gray-300 hover:border-red-700'
-                                    }`}
-                            >
-                                {pack}
-                            </button>
-                        ))}
-                    </div>
-                </div>
-
                 {/* Quantity Selector */}
                 <div className="flex items-center gap-8 mb-6">
                     <div className="flex items-center border border-red-600 rounded-full py-1.5 px-0.5">
@@ -164,10 +155,10 @@ const Single_Product_Main_Info = () => {
 
                 {/* Action Buttons */}
                 <div className="flex gap-4 mb-6">
-                    <button className=" px-8 py-3 border border-red-600 rounded-full hover:bg-gray-50">
+                    <button className="px-8 py-3 max-sm:py-0 max-sm:text-xs border border-red-600 rounded-full hover:bg-black hover:text-white hover:border-none">
                         ADD TO CART
                     </button>
-                    <button className="px-8 py-3 bg-red-600 text-white rounded-full hover:bg-red-800">
+                    <button className="px-8 py-3 max-sm:py-0 max-sm:text-xs bg-red-600 text-white rounded-full hover:bg-black">
                         BUY IT NOW
                     </button>
                     <button className="p-3 border border-red-600 rounded-full hover:bg-gray-50">
@@ -193,29 +184,9 @@ const Single_Product_Main_Info = () => {
                         </div>
                     ))}
                 </div>
-
-                {/* Payment Methods & Certifications */}
-                <div className="border-t pt-6">
-                    <div className="flex items-center gap-4 mb-4">
-                        <span className="text-gray-600 w-[18%]">Guarantee Safe Checkout</span>
-                        <div className="flex gap-2">
-                            {['Google Pay', 'Visa', 'Mastercard', 'Amazon Pay', 'UPI'].map((payment, index) => (
-                                <div key={index} className="w-10 h-6 py-4 px-6 flex justify-center items-center bg-gray-200 rounded">
-                                    <img src="/images/g_pay_icon.png" alt="" />
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                    <div className="w-full bg-blue-50 flex gap-4 py-4 justify-center items-center">
-                        {['FSSAI', 'ISO', 'FDA'].map((cert, index) => (
-                            <div key={index} className="w-12 h-12 bg-gray-200 rounded"></div>
-                        ))}
-                    </div>
-                </div>
             </div>
         </>
     )
 }
 
 export default Single_Product_Main_Info
-

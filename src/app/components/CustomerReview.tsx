@@ -65,7 +65,7 @@ export default function CustomerReviews() {
     };
 
     return (
-        <section className="w-full mx-auto px-4 py-12">
+        <section className="w-full mx-auto px-4 py-12 max-sm:px-0">
             <div className=" w-full flex flex-col justify-start items-start">
                 {/* Summary Section */}
                 <div className=" w-full md:col-span-1">

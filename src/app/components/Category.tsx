@@ -1,5 +1,6 @@
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
+import Link from 'next/link';
 
 interface CategoryArray {
   id: string;
@@ -43,8 +44,8 @@ const categories: CategoryArray[] = [
 
 const Category = () => {
   return (
-    <div className='w-full bg-bgColor'>
-      <div className="w-[95%] max-sm:w-[95%] 2xl:w-[70%] mx-auto px-4 py-8">
+    <div id='category_section' className='w-full bg-bgColor'>
+      <div className="w-[95%] 2xl:w-[70%] mx-auto py-8">
         <h2 className=" w-full text-3xl font-bold text-center mb-8 text-gray-800">
           Categories
         </h2>
@@ -54,7 +55,7 @@ const Category = () => {
               key={category.id}
               className="group relative rounded-lg overflow-hidden cursor-pointer transition-transform duration-300 hover:scale-105"
             >
-              <div className={` ${category.backgroundColor} h-32 relative`}>
+              <Link href="product-detail" className={` ${category.backgroundColor} h-32 relative`}>
                 <img src="/images/category_img_1.webp" className=' w-full bg-cover h-full' alt="" />
                 <div className="absolute inset-0 flex items-center justify-between p-4">
                   <div>
@@ -67,7 +68,7 @@ const Category = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             </div>
           ))}
         </div>

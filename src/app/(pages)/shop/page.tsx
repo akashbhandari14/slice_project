@@ -22,10 +22,6 @@ const ProductPage = () => {
                     <Product_Display_Navigation />
                     <div className="product_display_main w-full grid grid-cols-[3fr_8fr] max-lg:grid-cols-1 gap-8">
                         <div className="product_display_category max-lg:hidden w-full flex flex-col">
-                            <div className="category_heading w-full flex justify-between items-center py-6">
-                                <h3 className="text-xl">Product categories</h3>
-                                <IoIosArrowUp />
-                            </div>
                             <Product_Display_Category />
                             <Product_Display_Availablity />
                             <PriceRanger />
@@ -51,7 +47,7 @@ const ProductPage = () => {
 
 
                         <div className="product_display_product w-full flex flex-col justify-center">
-                            <div className="all_product_container w-full grid grid-cols-3 gap-8">
+                            <div className="all_product_container w-full grid grid-cols-3 max-md:grid-cols-2 gap-8">
                                 {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((currElem, index) => {
                                     return (
                                         <div
