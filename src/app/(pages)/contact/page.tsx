@@ -14,26 +14,26 @@ const page = () => {
           <h1 className='text-4xl font-medium'>Contact Us</h1>
           <p className='text-sm text-zinc-600 text-center'>We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
         </div>
-        <div className="contact_us_inner_container grid grid-cols-[6fr_3fr] max-lg:grid-cols-1 gap-8 w-[90%] mx-auto py-12">
+        <div className="contact_us_inner_container grid grid-cols-[6fr_3fr] max-lg:grid-cols-1 gap-20 w-[90%] mx-auto py-12">
           <div className='flex flex-col justify-start items-start gap-4'>
             <h3 className='text-3xl font-semibold'>Send us a Message</h3>
             <p className='text-sm text-zinc-600'>Use the form below to get in touch with out team </p>
             <form action="" className='w-full flex flex-col justify-start items-start gap-4'>
               <div className="name_and_email_section w-full">
                 <label htmlFor="name" className='font-semibold'>Your Name*</label>
-                <input type="text" placeholder='Your Name*' id='name' className=' w-full p-2.5 rounded-xl outline-none border border-zinc-600' />
+                <input type="text" placeholder='Your Name*' id='name' className=' w-full p-2.5 bg-transparent outline-none border-b-2 border-zinc-600' />
               </div>
               <div className="name_and_email_section w-full">
                 <label htmlFor="name" className='font-semibold'>Email Address*</label>
-                <input type="text" placeholder='Your Address*' id='name' className=' w-full p-2.5 rounded-xl outline-none border border-zinc-600' />
+                <input type="text" placeholder='Your Address*' id='name' className=' w-full p-2.5 bg-transparent outline-none border-b-2 border-zinc-600' />
               </div>
               <div className="name_and_email_section w-full">
                 <label htmlFor="name" className='font-semibold'>Subject*</label>
-                <input type="text" placeholder='Enter your subject for contacting' id='name' className=' w-full p-2.5 rounded-xl outline-none border border-zinc-600' />
+                <input type="text" placeholder='Enter your subject for contacting' id='name' className=' w-full p-2.5 bg-transparent outline-none border-b-2 border-zinc-600' />
               </div>
               <div className="name_and_email_section w-full">
                 <label htmlFor="mssg" className='font-semibold'>Message*</label>
-                <textarea name="" id="mssg" rows={5} className='w-full p-2.5 rounded-xl outline-none border border-zinc-600' placeholder='Your Message*'></textarea>
+                <textarea name="" id="mssg" rows={5} className=' w-full p-2.5 bg-transparent outline-none border-b-2 border-zinc-600' placeholder='Your Message*'></textarea>
               </div>
 
               <button type='submit' className='bg-[#dc2626] hover:bg-black p-3 rounded-md text-white'>Send Message</button>

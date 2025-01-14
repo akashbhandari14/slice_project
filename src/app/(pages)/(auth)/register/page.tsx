@@ -49,7 +49,7 @@ const page = () => {
               <p className="text-center text-gray-600">
                 Already have an account?{' '}
                 <Link href="/login" className="text-rose-600 hover:text-rose-500 underline">
-                  Sign In
+                  Log In
                 </Link>
               </p>
             </div>

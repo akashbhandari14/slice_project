@@ -2,6 +2,10 @@
 
 import React, { useState } from 'react';
 import { Menu, Search, User, Heart, ShoppingBag, X } from 'lucide-react';
+import { IoHomeOutline } from "react-icons/io5";
+import { FiShoppingBag } from "react-icons/fi";
+import { TbCategoryPlus } from "react-icons/tb";
+import { IoMdContact } from "react-icons/io";
 import Link from 'next/link';
 
 export default function Navbar() {
@@ -21,19 +25,19 @@ export default function Navbar() {
 
             <nav className="navbar_info hidden lg:block">
               <ul className="flex gap-16">
-                <Link href="/"><li className="cursor-pointer hover:text-red-600 transition-colors">Home</li></Link>
-                <Link href="/shop"><li className="cursor-pointer hover:text-red-600 transition-colors">Shop</li></Link>
-                <Link href="#category_section"><li className="cursor-pointer hover:text-red-600 transition-colors">Category</li></Link>
-                <Link href="/about"><li className="cursor-pointer hover:text-red-600 transition-colors">About</li></Link>
-                <Link href="/contact"><li className="cursor-pointer hover:text-red-600 transition-colors">Contact Us</li></Link>
+                <li className="cursor-pointer hover:text-red-600 transition-colors"><Link href="/">Home</Link></li>
+                <li className="cursor-pointer hover:text-red-600 transition-colors"><Link href="/shop">Shop</Link></li>
+                <li className="cursor-pointer hover:text-red-600 transition-colors"><Link href="#category_section">Category</Link></li>
+                <li className="cursor-pointer hover:text-red-600 transition-colors"><Link href="/about">About Us</Link></li>
+                <li className="cursor-pointer hover:text-red-600 transition-colors"><Link href="/contact">Contact Us</Link></li>
               </ul>
             </nav>
 
             <div className="navbar_icon hidden lg:flex gap-6 items-center">
               <Search className="w-5 h-5 cursor-pointer hover:text-red-600 transition-colors"
                 onClick={() => setIsSearchOpen(!isSearchOpen)} />
-              <User className="user_icon w-5 h-5 cursor-pointer hover:text-red-600 transition-colors" />
-              <Heart className="whislist_icon w-5 h-5 cursor-pointer hover:text-red-600 transition-colors" />
+              <Link href="/login"><User className="user_icon w-5 h-5 cursor-pointer hover:text-red-600 transition-colors" /></Link>
+              <Link href="/wishlist"><Heart className="whislist_icon w-5 h-5 cursor-pointer hover:text-red-600 transition-colors" /></Link>
               <ShoppingBag className="w-5 h-5 cursor-pointer hover:text-red-600 transition-colors" />
             </div>
 
@@ -56,8 +60,8 @@ export default function Navbar() {
                   className="w-5 h-5 cursor-pointer"
                   onClick={() => setIsSearchOpen(!isSearchOpen)}
                 />
-                <User className="w-5 h-5 cursor-pointer" />
-                <Heart className="w-5 h-5 cursor-pointer" />
+                <Link href="/login"><User className="w-5 h-5 cursor-pointer" /></Link>
+                <Link href="/wishlist"><Heart className="w-5 h-5 cursor-pointer" /></Link>
                 <ShoppingBag className="w-5 h-5 cursor-pointer" />
               </div>
             </div>
@@ -79,7 +83,7 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Left Sidebar for Mobile/Tablet */}
+      {/* Modified Left Sidebar for Mobile/Tablet */}
       {isMenuOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
           {/* Overlay */}
@@ -98,13 +102,29 @@ export default function Navbar() {
                 />
               </div>
 
+              {/* Modified Navigation Menu */}
               <nav className="mt-8">
                 <ul className="space-y-4">
-                <Link href="/" className="cursor-pointer hover:text-red-600 transition-colors"><li onClick={()=>{ setIsMenuOpen(false) }} >Home</li></Link>
-                <Link href="/shop" className="cursor-pointer hover:text-red-600 transition-colors"><li onClick={()=>{ setIsMenuOpen(false) }}>Shop</li></Link>
-                  <Link href="#category_section" scroll={true} className="cursor-pointer hover:text-red-600 transition-colors"><li onClick={()=>{ setIsMenuOpen(false) }} >Category</li></Link>
-                  <Link href="/about" className="cursor-pointer hover:text-red-600 transition-colors"><li onClick={()=>{ setIsMenuOpen(false) }}>About</li></Link>
-                  <Link href="/contact" className="cursor-pointer hover:text-red-600 transition-colors"><li onClick={()=>{ setIsMenuOpen(false) }}>Contact Us</li></Link>
+                  <li className="flex items-center space-x-2 py-2 px-4 hover:bg-gray-50" onClick={() => setIsMenuOpen(false)}>
+                    <IoHomeOutline />
+                    <Link href="/" className="text-gray-800">Home</Link>
+                  </li>
+                  <li className="flex items-center space-x-2 py-2 px-4 hover:bg-gray-50" onClick={() => setIsMenuOpen(false)}>
+                    <FiShoppingBag /> 
+                    <Link href="/shop" className="text-gray-800">Shop</Link>
+                  </li>
+                  <li className="flex items-center space-x-2 py-2 px-4 hover:bg-gray-50" onClick={() => setIsMenuOpen(false)}>
+                    <TbCategoryPlus />
+                    <Link href="#category_section" className="text-gray-800">Category</Link>
+                  </li>
+                  <li className="flex items-center space-x-2 py-2 px-4 hover:bg-gray-50" onClick={() => setIsMenuOpen(false)}>
+                    <img src="/images/about_us_icon.png" className='w-4 h-auto' alt="about_us_icon" />
+                    <Link href="/about" className="text-gray-800">About Us</Link>
+                  </li>
+                  <li className="flex items-center space-x-2 py-2 px-4 hover:bg-gray-50" onClick={() => setIsMenuOpen(false)}>
+                    <IoMdContact />
+                    <Link href="/contact" className="text-gray-800">Contact Us</Link>
+                  </li>
                 </ul>
               </nav>
             </div>

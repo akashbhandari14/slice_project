@@ -3,23 +3,29 @@
 import Link from "next/link";
 import React from "react";
 import ProductCard from "./ProductCard";
+import { productArray } from "../utils/temp";
 
 
+console.log(productArray)
 
-interface ProductData {
-  id: number;
-  discount: string;
-  price: number;
-  originalPrice: number;
+// Define types
+interface Image {
+    id: number;
+    url: string;
+    alt: string;
+}
+
+
+interface productArray {
+  id: string;
+  title: string;
+  image:Image[];
+  discount:number;
+  price:number;
+  sizes:string[]
 }
 
 const Product: React.FC = () => {
-  const products: ProductData[] = [
-    { id: 1, discount: "-28%", price: 73, originalPrice: 101 },
-    { id: 2, discount: "-28%", price: 73, originalPrice: 101 },
-    { id: 3, discount: "-28%", price: 73, originalPrice: 101 },
-    { id: 4, discount: "-28%", price: 73, originalPrice: 101 },
-  ];
 
   const categories = [
     "Everyday Masala",
@@ -75,13 +81,16 @@ const Product: React.FC = () => {
               border-radius: 4px;
             }
           `}</style>
-          <div className="flex gap-4 overflow-x-auto pb-4 md:pb-0 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-8">
-            {products.map((product) => (
+          <div className="flex gap-4 max-md:overflow-x-auto pb-4 md:pb-0 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-8">
+            {productArray.map((product) => (
               <ProductCard
                 key={product.id}
-                discount={product.discount}
-                price={product.price}
-                originalPrice={product.originalPrice}
+                id={product.id}
+                title={product.productName}
+                image={product.images}
+                discount={product.discountedPrice}
+                price={product.mrp}
+                sizes={product.productSize}
               />
             ))}
           </div>
