@@ -6,7 +6,7 @@ import PeopleAlsoBought from '@/app/components/PeopleAlsoBought';
 import CustomerReviews from '@/app/components/CustomerReview';
 import Single_Product_Main_Info from '../Single_Product_Main_Info';
 import Single_Product_Main_Img_Container from '../Single_Product_Main_Img_Container';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface PageProps {
   params: { slug: string };
@@ -23,7 +23,7 @@ interface Product {
   productName: string;
   productFeatures: string[];
   productRating: number;
-  productDescription: string,
+  productDescription: string;
   productReviews: number;
   productSize: string[];
   images: ProductImage[];
@@ -32,20 +32,32 @@ interface Product {
 }
 
 const Page: React.FC<PageProps> = ({ params }) => {
-  // Ensure params are valid
-  if (!params || !params.slug) {
-    console.error('Params are missing or invalid.');
-    return <div>Product not found</div>;
+  const [slug, setSlug] = useState<string | null>(null);
+  const [specificProduct, setSpecificProduct] = useState<Product | null>(null);
+
+  useEffect(() => {
+    // Unwrap `params` asynchronously
+    (async () => {
+      const unwrappedParams = await params;
+      if (unwrappedParams && unwrappedParams.slug) {
+        setSlug(unwrappedParams.slug);
+
+        // Find the product based on the slug
+        const product = productArray.find((currElem) => currElem.id === unwrappedParams.slug);
+        setSpecificProduct(product || null);
+      } else {
+        console.error('Params are missing or invalid.');
+      }
+    })();
+  }, [params]);
+
+  // Handle loading or product not found cases
+  if (!slug) {
+    return <div>Loading...</div>;
   }
 
-  // Find the product based on the slug
-  const specificProduct: Product | undefined = productArray.find(
-    (currElem) => currElem.id === params.slug
-  );
-
-  // Handle case where product is not found
   if (!specificProduct) {
-    console.error(`Product not found for the slug: ${params.slug}`);
+    console.error(`Product not found for the slug: ${slug}`);
     return <div>Product not found</div>;
   }
 

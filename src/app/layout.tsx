@@ -1,13 +1,33 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Mohave } from "next/font/google";
 import "./globals.css";
+import { Roboto } from 'next/font/google';
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer"
+
+
+// Load Google Font with specific weights and styles
+// const roboto = Roboto({
+//   subsets: ['latin'], // Specify the subset
+//   weight: ['400', '700'], // Specify font weights
+//   style: ['normal', 'italic'], // Specify styles
+//   display: 'swap', // Optimize font loading
+// });
+
+const mohave = Mohave({
+  subsets: ['latin'], // Specify the subset
+  weight: ['400', '700'], // Specify font weights
+  style: ['normal', 'italic'], // Specify styles
+  display: 'swap', // Optimize font loading
+})
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
+
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -25,7 +45,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className={`${mohave.className} scroll-smooth`}>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Navbar />
         {children}

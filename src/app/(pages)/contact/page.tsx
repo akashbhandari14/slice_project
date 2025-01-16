@@ -21,19 +21,19 @@ const page = () => {
             <form action="" className='w-full flex flex-col justify-start items-start gap-4'>
               <div className="name_and_email_section w-full">
                 <label htmlFor="name" className='font-semibold'>Your Name*</label>
-                <input type="text" placeholder='Your Name*' id='name' className=' w-full p-2.5 bg-transparent outline-none border-b-2 border-zinc-600' />
+                <input type="text" placeholder='Your Name*' id='name' className=' w-full pt-2.5 bg-transparent outline-none border-b-2 border-zinc-600' />
               </div>
               <div className="name_and_email_section w-full">
                 <label htmlFor="name" className='font-semibold'>Email Address*</label>
-                <input type="text" placeholder='Your Address*' id='name' className=' w-full p-2.5 bg-transparent outline-none border-b-2 border-zinc-600' />
+                <input type="text" placeholder='Your Address*' id='name' className=' w-full pt-2.5 bg-transparent outline-none border-b-2 border-zinc-600' />
               </div>
               <div className="name_and_email_section w-full">
                 <label htmlFor="name" className='font-semibold'>Subject*</label>
-                <input type="text" placeholder='Enter your subject for contacting' id='name' className=' w-full p-2.5 bg-transparent outline-none border-b-2 border-zinc-600' />
+                <input type="text" placeholder='Enter your subject for contacting' id='name' className=' w-full pt-2.5 bg-transparent outline-none border-b-2 border-zinc-600' />
               </div>
               <div className="name_and_email_section w-full">
                 <label htmlFor="mssg" className='font-semibold'>Message*</label>
-                <textarea name="" id="mssg" rows={5} className=' w-full p-2.5 bg-transparent outline-none border-b-2 border-zinc-600' placeholder='Your Message*'></textarea>
+                <textarea name="" id="mssg" rows={5} className=' w-full pt-2.5 bg-transparent outline-none border-b-2 border-zinc-600' placeholder='Your Message*'></textarea>
               </div>
 
               <button type='submit' className='bg-[#dc2626] hover:bg-black p-3 rounded-md text-white'>Send Message</button>

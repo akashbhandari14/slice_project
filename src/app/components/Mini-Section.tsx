@@ -2,26 +2,36 @@
 
 import React, { useState, useEffect } from 'react';
 import { Leaf, Smile, Package, ChevronLeft, ChevronRight } from 'lucide-react';
+import { motion, useInView } from 'framer-motion';
 
 interface FeatureCardProps {
   icon: React.ReactNode;
   title: string;
   description: string;
+  index: number;
+  isInView: boolean;
 }
 
-const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description }) => (
-  <div className="flex flex-col items-center text-center p-6 space-y-4 max-w-full mx-auto">
+const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, index, isInView }) => (
+  <motion.div 
+    initial={{ opacity: 0, y: 20 }}
+    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+    transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+    className="flex flex-col items-center text-center p-6 space-y-4 max-w-full mx-auto"
+  >
     <div className="text-gray-700">
       {icon}
     </div>
     <h3 className="text-xl font-semibold text-gray-800">{title}</h3>
     <p className="text-gray-600 leading-relaxed">{description}</p>
-  </div>
+  </motion.div>
 );
 
 const MiniSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   const features = [
     {
@@ -93,16 +103,24 @@ const MiniSection = () => {
   };
 
   return (
-    <section className="w-full py-16 px-4 bg-[#fff9f0]">
+    <section ref={ref} className="w-full py-16 px-4 bg-lightBgColor">
       <div className="w-[90%] max-sm:w-[95%] 2xl:w-[70%] mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.5 }}
+          className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12"
+        >
           Rai's Spices: Your Best Choice for Spices
-        </h2>
+        </motion.h2>
         
         {isMobile ? (
           // Mobile/Tablet Slider View
           <div className="relative">
-            <div 
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
               className="overflow-hidden"
               onTouchStart={handleTouchStart}
               onTouchMove={handleTouchMove}
@@ -118,11 +136,13 @@ const MiniSection = () => {
                       icon={feature.icon}
                       title={feature.title}
                       description={feature.description}
+                      index={index}
+                      isInView={isInView}
                     />
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
             
             {/* Navigation Buttons */}
             <button
@@ -170,6 +190,8 @@ const MiniSection = () => {
                 icon={feature.icon}
                 title={feature.title}
                 description={feature.description}
+                index={index}
+                isInView={isInView}
               />
             ))}
           </div>

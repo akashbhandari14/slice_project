@@ -11,7 +11,7 @@ const ProductDisplayAvailability = () => {
                 className="category_heading w-full flex justify-between items-center py-6 cursor-pointer"
                 aria-expanded={isOpen}
             >
-                <h3 className="text-xl">Availability</h3>
+                <h3 className="text-lg">Availability</h3>
                 <IoIosArrowUp 
                     className={`transform transition-transform duration-300 ${
                         isOpen ? '' : 'rotate-180'

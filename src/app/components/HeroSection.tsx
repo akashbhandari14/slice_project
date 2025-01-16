@@ -76,7 +76,7 @@ const SpicesCarousel = () => {
                     <p className="text-lg text-gray-200 mb-8">
                       {slide.description}
                     </p>
-                    <button className="px-8 py-3 bg-orange-400 hover:bg-black text-white rounded-md transition-colors">
+                    <button className="px-8 py-3 bg-orange-400 hover:bg-btnHover text-white rounded-md transition-colors">
                       {slide.buttonText}
                     </button>
                   </div>

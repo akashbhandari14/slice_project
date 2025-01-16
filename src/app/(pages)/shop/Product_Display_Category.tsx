@@ -22,11 +22,11 @@ const ProductCategories = () => {
   ];
 
   return (
-    <div className="w-full max-w-xs bg-transparent">
+    <div className="w-full bg-transparent mt-8">
       <div className="border-b border-gray-200">
         <button 
           onClick={() => setIsOpen(!isOpen)}
-          className="w-full py-4 px-2 flex justify-between items-center group"
+          className="w-full py-4 flex justify-between items-center group"
         >
           <h2 className="text-lg font-normal text-gray-800">Product categories</h2>
           {isOpen ? (

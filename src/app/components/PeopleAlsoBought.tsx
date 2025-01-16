@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Heart, Eye, ShoppingCart, ChevronLeft, ChevronRight } from 'lucide-react';
+import { productArray } from '../utils/temp';
 
 type Product = {
     id: string;
@@ -134,7 +135,7 @@ export default function PeopleAlsoBought() {
     };
 
     // Get current visible products
-    const visibleProducts = products.slice(currentIndex, currentIndex + productsPerSlide);
+    const visibleProducts = productArray.slice(currentIndex, currentIndex + productsPerSlide);
 
     // Calculate if buttons should be disabled
     const isNextDisabled = currentIndex + productsPerSlide >= products.length;
@@ -149,9 +150,8 @@ export default function PeopleAlsoBought() {
                 <button
                     onClick={showPrev}
                     disabled={isPrevDisabled}
-                    className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 bg-white rounded-full p-2 shadow-md transition-opacity ${
-                        isPrevDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-50'
-                    }`}
+                    className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 bg-white rounded-full p-2 shadow-md transition-opacity ${isPrevDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-50'
+                        }`}
                 >
                     <ChevronLeft className="w-6 h-6" />
                 </button>
@@ -159,29 +159,29 @@ export default function PeopleAlsoBought() {
                 <button
                     onClick={showNext}
                     disabled={isNextDisabled}
-                    className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 bg-white rounded-full p-2 shadow-md transition-opacity ${
-                        isNextDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-50'
-                    }`}
+                    className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 bg-white rounded-full p-2 shadow-md transition-opacity ${isNextDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-50'
+                        }`}
                 >
                     <ChevronRight className="w-6 h-6" />
                 </button>
 
                 {/* Products Grid */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-                    {visibleProducts.map((product) => (
+                    {visibleProducts?.map((product) => (
+
                         <div key={product.id} className="relative group">
                             {/* Product Card */}
                             <div className="relative aspect-[3/4] rounded-lg overflow-hidden">
                                 <Image
-                                    src={product.image}
-                                    alt={product.name}
+                                    src={product.images[0].url}
+                                    alt={product.images[0].alt}
                                     fill
                                     className="object-cover"
                                 />
 
-                                {product.discount && (
+                                {product.discountedPrice && (
                                     <span className="absolute top-4 right-4 bg-white px-2 py-1 rounded-md text-sm">
-                                        -{product.discount}%
+                                        -{product.discountedPrice}%
                                     </span>
                                 )}
 
@@ -199,8 +199,8 @@ export default function PeopleAlsoBought() {
                                 </div>
 
                                 {/* Pack Sizes */}
-                                <div className="absolute bottom-0 w-full flex gap-4 justify-center text-sm bg-white bg-opacity-30 gap-1">
-                                    {product.packSizes.map((size) => (
+                                <div className="absolute bottom-0 w-full flex gap-4 justify-center text-sm bg-white bg-opacity-30">
+                                    {product?.productSize.map((size) => (
                                         <span
                                             key={size}
                                             className="text-red-600 font-semibold text-xs rounded-md py-2"
@@ -213,12 +213,12 @@ export default function PeopleAlsoBought() {
 
                             {/* Product Info */}
                             <div className="text-center mt-4">
-                                <h3 className="font-medium mb-2">{product.name}</h3>
+                                <h3 className="font-medium mb-2">{product.productName}</h3>
                                 <div className="flex items-center justify-center gap-2">
                                     <span className="text-gray-500">From</span>
-                                    <span className="text-green-700">₹{product.fromPrice}</span>
-                                    {product.price !== product.fromPrice && (
-                                        <span className="text-gray-500 line-through">₹{product.price}</span>
+                                    <span className="text-green-700">₹{product.mrp}</span>
+                                    {product.mrp !== product.discountedPrice && (
+                                        <span className="text-gray-500 line-through">₹{product.discountedPrice}</span>
                                     )}
                                 </div>
                             </div>
@@ -232,11 +232,10 @@ export default function PeopleAlsoBought() {
                         <button
                             key={i}
                             onClick={() => setCurrentIndex(i * productsPerSlide)}
-                            className={`h-1 rounded-sm transition-all ${
-                                Math.floor(currentIndex / productsPerSlide) === i
+                            className={`h-1 rounded-sm transition-all ${Math.floor(currentIndex / productsPerSlide) === i
                                     ? 'w-8 bg-red-700'
                                     : 'w-4 bg-gray-300'
-                            }`}
+                                }`}
                         />
                     ))}
                 </div>

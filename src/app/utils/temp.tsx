@@ -18,32 +18,32 @@ export const productArray = [
         images: [
             {
                 id: 1,
-                url: '/images/single_product_img.webp',
+                url: '/images/spice_img_1.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 2,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_2.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 3,
-                url: '/images/single_product_img.webp',
+                url: '/images/spice_img_3.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 4,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_4.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 5,
-                url: '/images/single_product_img.webp',
+                url: '/images/spice_img_5.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 6,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_6.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
         ]
@@ -62,32 +62,32 @@ export const productArray = [
         images: [
             {
                 id: 1,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_2.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 2,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_1.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 3,
-                url: '/images/single_product_img.webp',
+                url: '/images/spice_img_3.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 4,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_4.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 5,
-                url: '/images/single_product_img.webp',
+                url: '/images/spice_img_5.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 6,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_6.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
         ]
@@ -106,32 +106,32 @@ export const productArray = [
         images: [
             {
                 id: 1,
-                url: '/images/single_product_img.webp',
+                url: '/images/spice_img_3.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 2,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_2.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 3,
-                url: '/images/single_product_img.webp',
+                url: '/images/spice_img_1.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 4,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_4.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 5,
-                url: '/images/single_product_img.webp',
+                url: '/images/spice_img_5.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 6,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_6.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
         ]
@@ -150,32 +150,32 @@ export const productArray = [
         images: [
             {
                 id: 1,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_4.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 2,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_2.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 3,
-                url: '/images/single_product_img.webp',
+                url: '/images/spice_img_3.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 4,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_1.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 5,
-                url: '/images/single_product_img.webp',
+                url: '/images/spice_img_5.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 6,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_6.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
         ]
@@ -194,32 +194,32 @@ export const productArray = [
         images: [
             {
                 id: 1,
-                url: '/images/single_product_img.webp',
+                url: '/images/spice_img_5.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 2,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_2.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 3,
-                url: '/images/single_product_img.webp',
+                url: '/images/spice_img_3.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 4,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_4.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 5,
-                url: '/images/single_product_img.webp',
+                url: '/images/spice_img_1.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 6,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_6.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
         ]
@@ -238,32 +238,32 @@ export const productArray = [
         images: [
             {
                 id: 1,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_6.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 2,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_2.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 3,
-                url: '/images/single_product_img.webp',
+                url: '/images/spice_img_3.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 4,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_4.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 5,
-                url: '/images/single_product_img.webp',
+                url: '/images/spice_img_5.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 6,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_1.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
         ]
@@ -282,32 +282,32 @@ export const productArray = [
         images: [
             {
                 id: 1,
-                url: '/images/single_product_img.webp',
+                url: '/images/spice_img_7.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 2,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_2.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 3,
-                url: '/images/single_product_img.webp',
+                url: '/images/spice_img_3.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 4,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_4.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 5,
-                url: '/images/single_product_img.webp',
+                url: '/images/spice_img_5.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 6,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_6.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
         ]
@@ -326,32 +326,32 @@ export const productArray = [
         images: [
             {
                 id: 1,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_8.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 2,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_2.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 3,
-                url: '/images/single_product_img.webp',
+                url: '/images/spice_img_3.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 4,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_4.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 5,
-                url: '/images/single_product_img.webp',
+                url: '/images/spice_img_5.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 6,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_6.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
         ]
@@ -370,32 +370,32 @@ export const productArray = [
         images: [
             {
                 id: 1,
-                url: '/images/single_product_img.webp',
+                url: '/images/spice_img_9.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 2,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_2.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 3,
-                url: '/images/single_product_img.webp',
+                url: '/images/spice_img_3.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 4,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_4.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 5,
-                url: '/images/single_product_img.webp',
+                url: '/images/spice_img_5.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 6,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_6.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
         ]
@@ -414,32 +414,32 @@ export const productArray = [
         images: [
             {
                 id: 1,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_10.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 2,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_2.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 3,
-                url: '/images/single_product_img.webp',
+                url: '/images/spice_img_3.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 4,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_4.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 5,
-                url: '/images/single_product_img.webp',
+                url: '/images/spice_img_5.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
             {
                 id: 6,
-                url: '/images/product_display_page_img.webp',
+                url: '/images/spice_img_6.JPG',
                 alt: 'Kashmiri Chilli Powder Package Front'
             },
         ]

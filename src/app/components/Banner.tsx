@@ -16,7 +16,7 @@ export default function Banner() {
             consequatur obcaecati minus dicta officiis fuga amet.
           </p>
           
-          <button className="mt-4 py-2.5 px-8 text-lg font-semibold text-white bg-[#cf934a] transition-colors duration-300 rounded-md shadow-lg hover:bg-black">
+          <button className="mt-4 py-2.5 px-8 text-lg font-semibold text-white bg-[#cf934a] transition-colors duration-300 rounded-md shadow-lg hover:bg-btnHover">
             Shop Now
           </button>
         </div>

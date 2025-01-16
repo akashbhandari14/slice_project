@@ -4,12 +4,14 @@ import Banner from "./components/Banner";
 import Product from "./components/Product";
 import MiniSection from "./components/Mini-Section";
 import TrustedBy from "./components/TrustedBy";
+import Cart from "./components/ShoppingCart_Sidebar";
 
 
 const page = () => {
   return (
     <>
       <div>
+        <Cart />
         <HeroSection />
         <Category />
         <Product />

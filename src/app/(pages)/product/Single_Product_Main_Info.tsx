@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Heart, Minus, Plus, Share2, ChevronDown, ChevronUp } from "lucide-react";
+import { motion } from "framer-motion";
 
 interface SingleProductMainInfoProps {
   title: string;
@@ -38,13 +39,43 @@ const Single_Product_Main_Info = ({
 
   const sizeOptions = sizes;
 
+  const containerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5 }
+    }
+  };
+
   return (
-    <div>
-      <h1 className="text-3xl font-semibold mb-2">{title}</h1>
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+    >
+      <motion.h1 variants={itemVariants} className="text-3xl font-semibold mb-2">
+        {title}
+      </motion.h1>
 
-      <p className="text-gray-400 font-semibold">{features.join(" | ")}</p>
+      <motion.p variants={itemVariants} className="text-gray-400 font-semibold">
+        {features.join(" | ")}
+      </motion.p>
 
-      <div className="flex items-center gap-2 mb-2">
+      <motion.div variants={itemVariants} className="flex items-center gap-2 mb-2">
         <div className="flex items-center">
           {[...Array(5)].map((_, i) => (
             <span
@@ -58,10 +89,9 @@ const Single_Product_Main_Info = ({
           ))}
         </div>
         <span className="text-gray-600">{reviews} reviews</span>
-      </div>
+      </motion.div>
 
-      {/* Modified Product Description with Show More/Less */}
-      <div className="relative mb-6">
+      <motion.div variants={itemVariants} className="relative mb-6">
         <p
           className={`product_description text-gray-700 text-sm transition-all duration-300 ${
             isExpanded ? "" : "line-clamp-2"
@@ -69,7 +99,9 @@ const Single_Product_Main_Info = ({
         >
           {description}
         </p>
-        <button
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
           onClick={() => setIsExpanded(!isExpanded)}
           className="text-red-600 text-sm font-medium flex items-center gap-1 hover:text-red-700 mt-1"
         >
@@ -84,24 +116,25 @@ const Single_Product_Main_Info = ({
               <ChevronDown className="w-4 h-4" />
             </>
           )}
-        </button>
-      </div>
+        </motion.button>
+      </motion.div>
 
-      <div className="flex items-center gap-4 mb-6">
+      <motion.div variants={itemVariants} className="flex items-center gap-4 mb-6">
         <span className="text-xl font-bold">₹{discountedPrice}</span>
         <span className="line-through">₹{price}</span>
         <span className="bg-red-600 text-white px-2 py-1 text-sm font-semibold rounded-full">
           {Math.round(((discountedPrice - price) / price) * 100)}% OFF
         </span>
-      </div>
+      </motion.div>
 
-      {/* Size Selection */}
-      <div className="mb-6">
+      <motion.div variants={itemVariants} className="mb-6">
         <p className="font-medium mb-2">Size:</p>
         <div className="flex gap-2">
           {sizeOptions.map((size) => (
-            <button
+            <motion.button
               key={size}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               className={`px-4 py-0.5 rounded-full border ${
                 size === sizes[0]
                   ? "bg-red-600 text-white border-red-700"
@@ -109,57 +142,77 @@ const Single_Product_Main_Info = ({
               }`}
             >
               {size}
-            </button>
+            </motion.button>
           ))}
         </div>
-      </div>
+      </motion.div>
 
-      {/* Quantity Selector */}
-      <div className="flex items-center gap-8 mb-6">
+      <motion.div variants={itemVariants} className="flex items-center gap-8 mb-6">
         <div className="flex items-center border border-red-600 rounded-full py-1.5 px-0.5">
-          <button
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
             onClick={() => handleQuantityChange("decrease")}
             className="p-2 hover:bg-gray-100"
           >
             <Minus className="w-4 h-4" />
-          </button>
+          </motion.button>
           <span className="w-12 text-center">{quantity}</span>
-          <button
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
             onClick={() => handleQuantityChange("increase")}
             className="p-2 hover:bg-gray-100"
           >
             <Plus className="w-4 h-4" />
-          </button>
+          </motion.button>
         </div>
-      </div>
+      </motion.div>
 
-      {/* Action Buttons */}
-      <div className="flex gap-4 mb-6">
-        <button className="px-8 py-3 max-sm:py-0 max-sm:text-xs border border-red-600 rounded-full hover:bg-black hover:text-white hover:border-none">
+      <motion.div variants={itemVariants} className="flex gap-4 mb-6">
+        <motion.button
+          whileHover={{ scale: 1.05, backgroundColor: "black", color: "white" }}
+          whileTap={{ scale: 0.95 }}
+          className="px-8 py-3 max-sm:py-0 max-sm:text-xs border border-red-600 rounded-full"
+        >
           ADD TO CART
-        </button>
-        <button className="px-8 py-3 max-sm:py-0 max-sm:text-xs bg-red-600 text-white rounded-full hover:bg-black">
+        </motion.button>
+        <motion.button
+          whileHover={{ scale: 1.05, backgroundColor: "black" }}
+          whileTap={{ scale: 0.95 }}
+          className="px-8 py-3 max-sm:py-0 max-sm:text-xs bg-red-600 text-white rounded-full"
+        >
           BUY IT NOW
-        </button>
-        <button className="p-3 border border-red-600 rounded-full hover:bg-gray-50">
+        </motion.button>
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          className="p-3 border border-red-600 rounded-full hover:bg-gray-50"
+        >
           <Heart className="w-6 h-6" />
-        </button>
-      </div>
+        </motion.button>
+      </motion.div>
 
-      {/* Product Features */}
-      <div className="grid grid-cols-4 gap-4 mb-6">
+      <motion.div
+        variants={containerVariants}
+        className="grid grid-cols-4 gap-4 mb-6"
+      >
         {features.map((feature, index) => (
-          <div key={index} className="text-center flex flex-col items-center">
+          <motion.div
+            key={index}
+            variants={itemVariants}
+            className="text-center flex flex-col items-center"
+          >
             <img
               src="/images/single_product_bulk_inquiry_img.svg"
               className="w-12"
               alt={feature}
             />
             <p className="text-sm text-gray-600">{feature}</p>
-          </div>
+          </motion.div>
         ))}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

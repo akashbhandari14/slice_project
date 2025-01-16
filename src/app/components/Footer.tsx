@@ -28,7 +28,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#942c23] text-white">
       {/* Hero Section - Stacks better on mobile */}
-      <div className="w-full px-4 md:w-[90%] md:mx-auto 2xl:w-[70%] pt-12 pb-8">
+      <div className="w-[90%] px-4 max-sm:w-[95%] md:mx-auto pt-12 pb-8">
         <div className="mb-12">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light leading-tight">
             Every day<br />
@@ -52,7 +52,7 @@ export default function Footer() {
               </div>
             </div>
 
-            <button className="bg-[#c78f42] text-white px-6 py-3 rounded-full hover:bg-black transition-colors text-sm md:text-base w-full md:w-auto">
+            <button className="bg-[#c78f42] text-white px-6 py-3 rounded-full hover:bg-btnHover transition-colors text-sm md:text-base w-full md:w-auto">
               Shop premium spices today
             </button>
           </div>
@@ -71,7 +71,7 @@ export default function Footer() {
                 className="bg-[#f0ead4]/50 placeholder-white px-4 py-3 rounded-lg flex-grow text-sm md:text-base"
               />
               <button type="submit" 
-                className="bg-[#c78f42] px-6 py-3 rounded-lg hover:bg-black transition-colors whitespace-nowrap text-sm md:text-base">
+                className="bg-[#c78f42] px-6 py-3 rounded-lg hover:bg-btnHover transition-colors whitespace-nowrap text-sm md:text-base">
                 Subscribe it
               </button>
             </div>

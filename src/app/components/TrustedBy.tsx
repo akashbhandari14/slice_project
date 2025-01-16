@@ -2,6 +2,8 @@
 
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
 
 interface CompanyLogo {
   id: number;
@@ -11,6 +13,9 @@ interface CompanyLogo {
 }
 
 const TrustedBy: React.FC = () => {
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { once: true });
+
   const companies: CompanyLogo[] = [
     {
       id: 1,
@@ -50,21 +55,54 @@ const TrustedBy: React.FC = () => {
     }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    }
+  };
+
   return (
-    <section className="bg-[#fff9f3] py-12 md:py-16">
+    <section className="bg-lightestBgColor py-12 md:py-16" ref={ref}>
       <div className="container mx-auto px-4">
         {/* Heading */}
-        <div className="text-center mb-12">
+        <motion.div 
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: -20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+          transition={{ duration: 0.6 }}
+        >
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
             Trusted By
           </h2>
-        </div>
+        </motion.div>
 
         {/* Logos Grid - Desktop & Tablet */}
-        <div className="hidden md:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 md:gap-12 items-center justify-items-center max-w-6xl mx-auto">
+        <motion.div 
+          className="hidden md:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 md:gap-12 items-center justify-items-center max-w-6xl mx-auto"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
           {companies.map((company) => (
-            <div
+            <motion.div
               key={company.id}
+              variants={itemVariants}
               className="relative group cursor-pointer transform transition-transform duration-300 hover:scale-110"
             >
               <img
@@ -72,16 +110,22 @@ const TrustedBy: React.FC = () => {
                 alt={company.name}
                 className={`${company.width} object-contain`}
               />
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Logos Horizontal Scroll - Mobile Only */}
-        <div className="md:hidden overflow-x-auto custom-scrollbar">
+        <motion.div 
+          className="md:hidden overflow-x-auto custom-scrollbar"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
           <div className="inline-flex gap-8 min-w-max px-4">
             {companies.map((company) => (
-              <div
+              <motion.div
                 key={company.id}
+                variants={itemVariants}
                 className="relative group cursor-pointer place-content-center transform transition-transform duration-300 hover:scale-110"
               >
                 <img
@@ -89,10 +133,10 @@ const TrustedBy: React.FC = () => {
                   alt={company.name}
                   className={`${company.width} object-contain`}
                 />
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         <style jsx global>{`
           .custom-scrollbar {
